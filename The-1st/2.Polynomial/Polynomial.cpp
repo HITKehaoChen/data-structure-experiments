@@ -78,14 +78,14 @@ void Polynomial::swap(Term* x, Term* y) {
 
 std::istream& operator>> (std::istream& input, Polynomial& p) {
     /* Input the polynomial */
-    int coefficient[9] = {};
+    int coefficient[10] = {};
     std::string inputPNL;
     std::getline(input, inputPNL);
     inputPNL = " " + removeWhitespaces(inputPNL); // insert a whitespace at the beginning for simplicity
 
     /* Process with the input */
-    int inputCoefficient;
-    int inputExponent;
+    int inputCoefficient = 0;
+    int inputExponent = 0;
     for (size_t i = 1; inputPNL[i]; ++i) {        // start at index 1 so that there is no need to
         if (isalpha(inputPNL[i])) {               // judge whether i > 0 when encounter i - 1
             if (!isdigit(inputPNL[i - 1])) {
@@ -106,16 +106,23 @@ std::istream& operator>> (std::istream& input, Polynomial& p) {
                 inputExponent = int{inputPNL[i + 2] - '0'};
                 i += 3;                             // skip over
             }
-            coefficient[inputExponent-1] += inputCoefficient;
+            coefficient[inputExponent] += inputCoefficient;
+        } else if (isdigit(inputPNL[i]) && ! isalpha(inputPNL[i + 1])) {
+            inputCoefficient = int{inputPNL[i] - '0'};
+            if (inputPNL[i - 1] == '-') {
+                inputCoefficient = -inputCoefficient;
+            }
+            inputExponent = 0;
+            coefficient[inputExponent] += inputCoefficient;
         }
     }
 
     /* Stored into a Polynomial object */
     Polynomial storedPNL;
     Term* tempTerm = NULL;
-    for (int i = 0; i < 9; ++i) {
+    for (int i = 0; i < 10; ++i) {
         if (coefficient[i] != 0) {
-            tempTerm = new Term(coefficient[i], i + 1);
+            tempTerm = new Term(coefficient[i], i);
             storedPNL.insert(tempTerm);
         }
     }
@@ -129,15 +136,19 @@ std::ostream& operator<< (std::ostream& output, const Polynomial& p) {
         if (tempPointer != p.headPointer && tempPointer->coefficient > 0) {
             output << '+';
         }
-        if (tempPointer->coefficient == -1) {
-            output << '-';
-        } else if (tempPointer->coefficient != -1
-                   && tempPointer->coefficient != 1) {
+        if (tempPointer->exponent > 0) {
+            if (tempPointer->coefficient == -1) {
+                output << '-';
+            } else if (tempPointer->coefficient != -1
+                       && tempPointer->coefficient != 1) {
+                output << tempPointer->coefficient;
+            }
+            output << 'x';
+            if (tempPointer->exponent != 1) {
+                output << '^' << tempPointer->exponent;
+            }
+        } else {
             output << tempPointer->coefficient;
-        }
-        output << 'x';
-        if (tempPointer->exponent != 1) {
-            output << '^' << tempPointer->exponent;
         }
         tempPointer = tempPointer->next;
     }
