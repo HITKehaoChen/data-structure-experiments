@@ -11,6 +11,7 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 > [1.Infix-Notation-and-Prefix-Notation](#Infix-Notation-and-Prefix-Notation)
 >
 > [2.Polynomial](#Polynomial)
+>
 
 <br>
 ## Contents of Each Experiment
@@ -42,7 +43,11 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 4. 能够给出计算两个多项式加法、减法、乘法和除法运算的结果多项式，除法运算的结果包括商多项式和余数多项式。
 5. 要求尽量减少乘法和除法运算中间结果的空间占用和结点频繁的分配与回收操作。（提示：利用循环链表结构和可用空间表的思想，把循环链表表示的多项式返还给可用空间表，从而上述问题）。
 
+[>>>Code page<<<][1]
+
 <br>
+## Others
+
 And if you would like to know more about my university, here is the entry for you:
 
 [Harbin Institue of Technology][100]
