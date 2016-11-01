@@ -5,29 +5,33 @@
 struct Term {
     Term* prev = NULL;
     Term* next = NULL;
-    double exponent = 0.0;
     double coefficient = 1.0;
+    int exponent = 0;
     Term() {};
     Term(double coefficient, int exponent);
 };
 
 class Polynomial {
 private:
-    Term* headPointer = NULL;
+    Term* head = NULL;
     friend std::ostream& operator<< (std::ostream&, const Polynomial&);
     friend std::istream& operator>> (std::istream&, Polynomial&);
     friend Polynomial operator+ (const Polynomial&, const Polynomial&);
+    friend Polynomial operator+ (const Polynomial&, int x);
+    friend Polynomial operator+ (int x, const Polynomial&);
     friend Polynomial operator- (const Polynomial&, const Polynomial&);
     friend Polynomial operator* (const Polynomial&, int);
     friend Polynomial operator* (int, const Polynomial&);
     friend Polynomial operator<< (const Polynomial&, int);
     friend Polynomial operator* (const Polynomial&, const Polynomial&);
+    friend Polynomial operator/ (const Polynomial&, const Polynomial&);
+    friend Polynomial operator% (const Polynomial&, const Polynomial&);
 
 
 public:
     Polynomial() {};
-    Polynomial(const Polynomial&) = delete;         // for the sake of the non-copyable
-    Polynomial& operator=(const Polynomial&) = delete;
+    Polynomial(const Polynomial&);
+    Polynomial& operator=(const Polynomial&);
     Polynomial(Polynomial&&);
     Polynomial& operator=(Polynomial&&);
     ~Polynomial();
@@ -35,7 +39,6 @@ public:
     void remove(Term*);
     void swap(Term*, Term*);
     void sort();
-    Term* head() const ;
     size_t length() const ;
     double calc(double) const ;
 };
@@ -43,10 +46,15 @@ public:
 std::istream& operator>> (std::istream&, Polynomial&);
 std::ostream& operator<< (std::ostream&, const Polynomial&);
 Polynomial operator+ (const Polynomial&, const Polynomial&);
+Polynomial operator+ (const Polynomial&, int x);
+Polynomial operator+ (int x, const Polynomial&);
 Polynomial operator- (const Polynomial&, const Polynomial&);
 Polynomial operator* (const Polynomial&, int);
 Polynomial operator* (int, const Polynomial&);
-Polynomial operator<< (const Polynomial&, int); // move digits
+Polynomial operator<< (const Polynomial&, int);     // move digits
 Polynomial operator* (const Polynomial&, const Polynomial&);
+Polynomial operator/ (const Polynomial&, const Polynomial&);
+Polynomial operator% (const Polynomial&, const Polynomial&);
+
 
 #endif
