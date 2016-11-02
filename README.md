@@ -32,7 +32,6 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 4.	将操作数类型扩充到实数、扩充运算符集合，并引入变量操作数，来完成表达式求值。
 
 * * *
-
 <br>
 **<a name="Polynomial"></a>线性结构及其应用(二）**
 
@@ -47,7 +46,6 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 5. 要求尽量减少乘法和除法运算中间结果的空间占用和结点频繁的分配与回收操作。（提示：利用循环链表结构和可用空间表的思想，把循环链表表示的多项式返还给可用空间表，从而上述问题）。
 
 * * *
-
 <br>
 **<a name="Maze"></a>线性结构及其应用(三）**
 
