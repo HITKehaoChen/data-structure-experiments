@@ -78,7 +78,8 @@ void Polynomial::insert(Term* x) {
     }
 }
 
-void Polynomial::remove(Term* x) {
+Term* Polynomial::remove(Term* x) {
+    Term* pTerm = x->next;
     if (x->prev == NULL) {
         if (x->next != NULL) {
             x->next->prev = NULL;
@@ -91,6 +92,7 @@ void Polynomial::remove(Term* x) {
         x->next->prev = x->prev;
     }
     delete(x);
+    return pTerm;
 }
 
 void Polynomial::swap(Term* x, Term* y) {
@@ -258,11 +260,11 @@ Polynomial operator+ (const Polynomial& x, const Polynomial& y) {
     pTermTgt = pnlTgt.head;
     while (pTermTgt != NULL) {
         if (pTermTgt->coefficient == 0) {
-            pnlTgt.remove(pTermTgt);
+            pTermTgt = pnlTgt.remove(pTermTgt);
+            continue;
         }
         pTermTgt = pTermTgt->next;
     }
-
     pnlTgt.sort();
     return pnlTgt;
 }
@@ -273,6 +275,9 @@ Polynomial operator+ (const Polynomial& pnlSrc, int x) {
     while(pTermSrc != NULL) {
         if (pTermSrc->exponent == 0) {
             pTermSrc->coefficient += x;
+            if (pTermSrc->coefficient == 0) {
+                continue;
+            }
         }
         Term* pTermTgt = new Term;
         pTermTgt->coefficient = pTermSrc->coefficient;
@@ -290,6 +295,9 @@ Polynomial operator+ (int x, const Polynomial& pnlSrc) {
     while(pTermSrc != NULL) {
         if (pTermSrc->exponent == 0) {
             pTermSrc->coefficient += x;
+            if (pTermSrc->coefficient == 0) {
+                continue;
+            }
         }
         Term* pTermTgt = new Term;
         pTermTgt->coefficient = pTermSrc->coefficient;

@@ -36,7 +36,7 @@ public:
     Polynomial& operator=(Polynomial&&);
     ~Polynomial();
     void insert(Term*);
-    void remove(Term*);
+    Term* remove(Term*);
     void swap(Term*, Term*);
     void sort();
     size_t length() const ;
