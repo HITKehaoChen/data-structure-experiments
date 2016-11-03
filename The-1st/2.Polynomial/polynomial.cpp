@@ -14,32 +14,32 @@ Term::Term(double x, int y) {
 }
 
 Polynomial::Polynomial(const Polynomial& x) {
-    Term* pTermSrc;
-    pTermSrc = x.head;
-    while (pTermSrc != NULL) {
-        Term* pTermTgt = new Term;
-        pTermTgt->coefficient = pTermSrc->coefficient;
-        pTermTgt->exponent = pTermSrc->exponent;
-        insert(pTermTgt);
-        pTermSrc = pTermSrc->next;
+    Term* pSrc;
+    pSrc = x.head;
+    while (pSrc != NULL) {
+        Term* pDest = new Term;
+        pDest->coefficient = pSrc->coefficient;
+        pDest->exponent = pSrc->exponent;
+        insert(pDest);
+        pSrc = pSrc->next;
     }
     sort();
 }
 
 Polynomial& Polynomial::operator=(const Polynomial& x) {
     while (head != NULL) {
-        Term *temp = head;
+        Term *p = head;
         head = head->next;
-        delete(temp);
+        delete(p);
     }
-    Term* pTermSrc;
-    pTermSrc = x.head;
-    while (pTermSrc != NULL) {
-        Term* pTermTgt = new Term;
-        pTermTgt->coefficient = pTermSrc->coefficient;
-        pTermTgt->exponent = pTermSrc->exponent;
-        insert(pTermTgt);
-        pTermSrc = pTermSrc->next;
+    Term* pSrc;
+    pSrc = x.head;
+    while (pSrc != NULL) {
+        Term* pDest = new Term;
+        pDest->coefficient = pSrc->coefficient;
+        pDest->exponent = pSrc->exponent;
+        insert(pDest);
+        pSrc = pSrc->next;
     }
     sort();
     return *this;
@@ -51,9 +51,9 @@ Polynomial::Polynomial(Polynomial && x) : head{x.head} {
 
 Polynomial& Polynomial::operator=(Polynomial&& x) {
     while (head != NULL) {
-        Term *temp = head;
+        Term *p = head;
         head = head->next;
-        delete(temp);
+        delete(p);
     }
     head = x.head;
     x.head = nullptr;
@@ -62,9 +62,9 @@ Polynomial& Polynomial::operator=(Polynomial&& x) {
 
 Polynomial::~Polynomial() {
     while (head != NULL) {
-        Term *temp = head;
+        Term *p = head;
         head = head->next;
-        delete(temp);
+        delete(p);
     }
 }
 
@@ -79,7 +79,7 @@ void Polynomial::insert(Term* x) {
 }
 
 Term* Polynomial::remove(Term* x) {
-    Term* pTerm = x->next;
+    Term* p = x->next;
     if (x->prev == NULL) {
         if (x->next != NULL) {
             x->next->prev = NULL;
@@ -92,7 +92,7 @@ Term* Polynomial::remove(Term* x) {
         x->next->prev = x->prev;
     }
     delete(x);
-    return pTerm;
+    return p;
 }
 
 void Polynomial::swap(Term* x, Term* y) {
@@ -108,70 +108,70 @@ void Polynomial::swap(Term* x, Term* y) {
 
 void Polynomial::sort() {
     for (size_t i = 0; i < length(); ++i) {
-        Term* pTerm = head;
-        while (pTerm != NULL && pTerm->next != NULL) {
-            if (pTerm->exponent < pTerm->next->exponent) {
-                swap(pTerm, pTerm->next);
+        Term* p = head;
+        while (p != NULL && p->next != NULL) {
+            if (p->exponent < p->next->exponent) {
+                swap(p, p->next);
             }
-            pTerm = pTerm->next;
+            p = p->next;
         }
     }
 }
 
 size_t Polynomial::length() const {
-    Term* pTerm = head;
+    Term* p = head;
     size_t count = 0;
-    while (pTerm != NULL) {
+    while (p != NULL) {
         ++count;
-        pTerm = pTerm->next;
+        p = p->next;
     }
     return count;
 }
 
 double Polynomial::calc(double x) const {
     double sum{};
-    Term* pTerm = head;
-    while (pTerm != NULL) {
-        sum += pTerm->coefficient * pow(x, pTerm->exponent);
-        pTerm = pTerm->next;
+    Term* p = head;
+    while (p != NULL) {
+        sum += p->coefficient * pow(x, p->exponent);
+        p = p->next;
     }
     return sum;
 }
 
-std::istream& operator>> (std::istream& input, Polynomial& pnlSrc) {
+std::istream& operator>> (std::istream& input, Polynomial& dest) {
     /* Input the polynomial */
     double coefficient[10] = {};
-    std::string pnlInput;
-    std::getline(input, pnlInput);
-    pnlInput = " " + rmSpaces(pnlInput); // insert a whitespace at the beginning for simplicity
+    std::string inputString;
+    std::getline(input, inputString);
+    inputString = " " + rmSpaces(inputString); // insert a whitespace at the beginning for simplicity
 
     /* Process with the input */
     double cInput = 0;
     int expInput = 0;
-    for (size_t i = 1; pnlInput[i]; ++i) {        // start at index 1 so that there is no need to
-        if (isalpha(pnlInput[i])) {               // judge whether i > 0 when encounter i - 1
-            if (!isdigit(pnlInput[i - 1])) {
-                if (pnlInput[i - 1] == '-') {
+    for (size_t i = 1; inputString[i]; ++i) {        // start at index 1 so that there is no need to
+        if (isalpha(inputString[i])) {               // judge whether i > 0 when encounter i - 1
+            if (!isdigit(inputString[i - 1])) {
+                if (inputString[i - 1] == '-') {
                     cInput = -1;
                 } else {
                     cInput = 1;
                 }
             } else {
-                cInput = double{pnlInput[i - 1] - '0'};
-                if (pnlInput[i - 2] == '-') {
+                cInput = double{inputString[i - 1] - '0'};
+                if (inputString[i - 2] == '-') {
                     cInput = -cInput;
                 }
             }
-            if (pnlInput[i + 1] != '^') {
+            if (inputString[i + 1] != '^') {
                 expInput = 1;
             } else {
-                expInput = int{pnlInput[i + 2] - '0'};
+                expInput = int{inputString[i + 2] - '0'};
                 i += 3;                             // skip over
             }
             coefficient[expInput] += cInput;
-        } else if (isdigit(pnlInput[i]) && ! isalpha(pnlInput[i + 1])) {
-            cInput = double{pnlInput[i] - '0'};
-            if (pnlInput[i - 1] == '-') {
+        } else if (isdigit(inputString[i]) && ! isalpha(inputString[i + 1])) {
+            cInput = double{inputString[i] - '0'};
+            if (inputString[i - 1] == '-') {
                 cInput = -cInput;
             }
             expInput = 0;
@@ -180,244 +180,244 @@ std::istream& operator>> (std::istream& input, Polynomial& pnlSrc) {
     }
 
     /* Stored into a Polynomial object */
-    Polynomial pngTgt;
+    Polynomial temp;
     for (int i = 0; i < 10; ++i) {
         if (coefficient[i] != 0) {
-            Term* pTerm = new Term(coefficient[i], i);
-            pngTgt.insert(pTerm);
+            Term* p = new Term(coefficient[i], i);
+            temp.insert(p);
         }
     }
-    pnlSrc = std::move(pngTgt);       // use move() to change to r-value
+    dest = std::move(temp);       // use move() to change to r-value
     return input;
 }
 
-std::ostream& operator<< (std::ostream& output, const Polynomial& p) {
-    Term* pTerm = p.head;
-    if (pTerm == NULL) {
+std::ostream& operator<< (std::ostream& output, const Polynomial& src) {
+    Term* p = src.head;
+    if (p == NULL) {
         output << '0';
         return output;
     }
-    while (pTerm != NULL) {
-        if (pTerm != p.head && pTerm->coefficient > 0) {
+    while (p != NULL) {
+        if (p != src.head && p->coefficient > 0) {
             output << '+';
         }
-        if (pTerm->exponent > 0) {
-            if (pTerm->coefficient == -1) {
+        if (p->exponent > 0) {
+            if (p->coefficient == -1) {
                 output << '-';
-            } else if (pTerm->coefficient != -1
-                       && pTerm->coefficient != 1) {
-                output << pTerm->coefficient;
+            } else if (p->coefficient != -1
+                       && p->coefficient != 1) {
+                output << p->coefficient;
             }
             output << 'x';
-            if (pTerm->exponent != 1) {
-                output << '^' << pTerm->exponent;
+            if (p->exponent != 1) {
+                output << '^' << p->exponent;
             }
         } else {
-            output << pTerm->coefficient;
+            output << p->coefficient;
         }
-        pTerm = pTerm->next;
+        p = p->next;
     }
     return output;
 }
 
 Polynomial operator+ (const Polynomial& x, const Polynomial& y) {
-    Polynomial pnlTgt;
-    Term* pTermX = x.head;
-    Term* pTermY = y.head;
+    Polynomial dest;
+    Term* pX = x.head;
+    Term* pY = y.head;
 
     /* copy the whole X */
-    while (pTermX != NULL) {
-        Term* pTermTgt = new Term;
-        pTermTgt->coefficient = pTermX->coefficient;
-        pTermTgt->exponent = pTermX->exponent;
-        pnlTgt.insert(pTermTgt);
-        pTermX = pTermX->next;
+    while (pX != NULL) {
+        Term* pDest = new Term;
+        pDest->coefficient = pX->coefficient;
+        pDest->exponent = pX->exponent;
+        dest.insert(pDest);
+        pX = pX->next;
     }
 
     /* add terms from Y */
-    while (pTermY != NULL) {     // add coefficient directly when the term already exists
-        Term* pTermTgt;
-        pTermTgt = pnlTgt.head;
+    while (pY != NULL) {     // add coefficient directly when the term already exists
+        Term* pDest;
+        pDest = dest.head;
         bool flag = false;
-        while (pTermTgt != NULL) {
-            if (pTermTgt->exponent == pTermY->exponent) {
-                pTermTgt->coefficient += pTermY->coefficient;
+        while (pDest != NULL) {
+            if (pDest->exponent == pY->exponent) {
+                pDest->coefficient += pY->coefficient;
                 flag = true;
             }
-            pTermTgt = pTermTgt->next;
+            pDest = pDest->next;
         }
         if (! flag) {
-            pTermTgt = new Term;
-            pTermTgt->coefficient = pTermY->coefficient;
-            pTermTgt->exponent = pTermY->exponent;
-            pnlTgt.insert(pTermTgt);
+            pDest = new Term;
+            pDest->coefficient = pY->coefficient;
+            pDest->exponent = pY->exponent;
+            dest.insert(pDest);
         }
-        pTermY = pTermY->next;
+        pY = pY->next;
     }
 
     /* Search for zero term */
-    Term* pTermTgt;
-    pTermTgt = pnlTgt.head;
-    while (pTermTgt != NULL) {
-        if (pTermTgt->coefficient == 0) {
-            pTermTgt = pnlTgt.remove(pTermTgt);
+    Term* pDest;
+    pDest = dest.head;
+    while (pDest != NULL) {
+        if (pDest->coefficient == 0) {
+            pDest = dest.remove(pDest);
             continue;
         }
-        pTermTgt = pTermTgt->next;
+        pDest = pDest->next;
     }
-    pnlTgt.sort();
-    return pnlTgt;
+    dest.sort();
+    return dest;
 }
 
-Polynomial operator+ (const Polynomial& pnlSrc, int x) {
-    Polynomial pnlTgt;
-    Term* pTermSrc = pnlSrc.head;
-    while(pTermSrc != NULL) {
-        if (pTermSrc->exponent == 0) {
-            pTermSrc->coefficient += x;
-            if (pTermSrc->coefficient == 0) {
+Polynomial operator+ (const Polynomial& src, int x) {
+    Polynomial dest;
+    Term* pSrc = src.head;
+    while(pSrc != NULL) {
+        if (pSrc->exponent == 0) {
+            pSrc->coefficient += x;
+            if (pSrc->coefficient == 0) {
                 continue;
             }
         }
-        Term* pTermTgt = new Term;
-        pTermTgt->coefficient = pTermSrc->coefficient;
-        pTermTgt->exponent = pTermSrc->exponent;
-        pnlTgt.insert(pTermTgt);
-        pTermSrc = pTermSrc->next;
+        Term* pDest = new Term;
+        pDest->coefficient = pSrc->coefficient;
+        pDest->exponent = pSrc->exponent;
+        dest.insert(pDest);
+        pSrc = pSrc->next;
     }
-    pnlTgt.sort();
-    return pnlTgt;
+    dest.sort();
+    return dest;
 }
 
-Polynomial operator+ (int x, const Polynomial& pnlSrc) {
-    Polynomial pnlTgt;
-    Term* pTermSrc = pnlSrc.head;
-    while(pTermSrc != NULL) {
-        if (pTermSrc->exponent == 0) {
-            pTermSrc->coefficient += x;
-            if (pTermSrc->coefficient == 0) {
+Polynomial operator+ (int x, const Polynomial& src) {
+    Polynomial dest;
+    Term* pSrc = src.head;
+    while(pSrc != NULL) {
+        if (pSrc->exponent == 0) {
+            pSrc->coefficient += x;
+            if (pSrc->coefficient == 0) {
                 continue;
             }
         }
-        Term* pTermTgt = new Term;
-        pTermTgt->coefficient = pTermSrc->coefficient;
-        pTermTgt->exponent = pTermSrc->exponent;
-        pnlTgt.insert(pTermTgt);
-        pTermSrc = pTermSrc->next;
+        Term* pDest = new Term;
+        pDest->coefficient = pSrc->coefficient;
+        pDest->exponent = pSrc->exponent;
+        dest.insert(pDest);
+        pSrc = pSrc->next;
     }
-    pnlTgt.sort();
-    return pnlTgt;
+    dest.sort();
+    return dest;
 }
 
 Polynomial operator- (const Polynomial& x, const Polynomial& y) {
-    Polynomial pnlTemp;
-    Term* pTermY = y.head;
-    while (pTermY != NULL) {
+    Polynomial negativeY;
+    Term* pY = y.head;
+    while (pY != NULL) {
         Term* pTermTemp = new Term;
-        pTermTemp->coefficient = -pTermY->coefficient;
-        pTermTemp->exponent = pTermY->exponent;
-        pnlTemp.insert(pTermTemp);
-        pTermY = pTermY->next;
+        pTermTemp->coefficient = -pY->coefficient;
+        pTermTemp->exponent = pY->exponent;
+        negativeY.insert(pTermTemp);
+        pY = pY->next;
     }
-    pnlTemp = x + pnlTemp;
-    pnlTemp.sort();
-    return pnlTemp;
+    negativeY = x + negativeY;
+    negativeY.sort();
+    return negativeY;
 }
 
-Polynomial operator* (const Polynomial& pnlSrc, int x) {
-    Polynomial pnlTgt;
-    Term* pTermSrc = pnlSrc.head;
-    while (pTermSrc != NULL) {
-        Term* pTermTgt = new Term;
-        pTermTgt->coefficient = pTermSrc->coefficient * x;
-        pTermTgt->exponent = pTermSrc->exponent;
-        pnlTgt.insert(pTermTgt);
-        pTermSrc = pTermSrc->next;
+Polynomial operator* (const Polynomial& src, int x) {
+    Polynomial dest;
+    Term* pSrc = src.head;
+    while (pSrc != NULL) {
+        Term* pDest = new Term;
+        pDest->coefficient = pSrc->coefficient * x;
+        pDest->exponent = pSrc->exponent;
+        dest.insert(pDest);
+        pSrc = pSrc->next;
     }
-    pnlTgt.sort();
-    return pnlTgt;
+    dest.sort();
+    return dest;
 }
 
-Polynomial operator* (int x, const Polynomial& pnlSrc) {
-    Polynomial pnlTgt;
-    Term* pTermSrc = pnlSrc.head;
-    while (pTermSrc != NULL) {
-        Term* pTermTgt = new Term;
-        pTermTgt->coefficient = pTermSrc->coefficient * x;
-        pTermTgt->exponent = pTermSrc->exponent;
-        pnlTgt.insert(pTermTgt);
-        pTermSrc = pTermSrc->next;
+Polynomial operator* (int x, const Polynomial& src) {
+    Polynomial dest;
+    Term* pSrc = src.head;
+    while (pSrc != NULL) {
+        Term* pDest = new Term;
+        pDest->coefficient = pSrc->coefficient * x;
+        pDest->exponent = pSrc->exponent;
+        dest.insert(pDest);
+        pSrc = pSrc->next;
     }
-    pnlTgt.sort();
-    return pnlTgt;
+    dest.sort();
+    return dest;
 }
 
-Polynomial operator<< (const Polynomial& pnlSrc, int x) {
-    Polynomial pnlTgt;
-    Term* pTermSrc = pnlSrc.head;
-    while (pTermSrc != NULL) {
-        Term *pTermTgt = new Term;
-        pTermTgt->exponent = pTermSrc->exponent + x;
-        pTermTgt->coefficient = pTermSrc->coefficient;
-        pnlTgt.insert(pTermTgt);
-        pTermSrc = pTermSrc->next;
+Polynomial operator<< (const Polynomial& src, int x) {
+    Polynomial dest;
+    Term* pSrc = src.head;
+    while (pSrc != NULL) {
+        Term *pDest = new Term;
+        pDest->exponent = pSrc->exponent + x;
+        pDest->coefficient = pSrc->coefficient;
+        dest.insert(pDest);
+        pSrc = pSrc->next;
     }
-    pnlTgt.sort();
-    return pnlTgt;
+    dest.sort();
+    return dest;
 }
 
 Polynomial operator* (const Polynomial& x, const Polynomial& y) {
-    Polynomial pnlTgt;
-    Term* pTermX = x.head;
-    while (pTermX != NULL) {
-        Polynomial pnlTemp;
-        pnlTemp = pTermX->coefficient * y;
-        pnlTemp = pnlTemp << (pTermX->exponent);
-        pnlTgt = pnlTemp + pnlTgt;
-        pTermX = pTermX->next;
+    Polynomial dest;
+    Term* pX = x.head;
+    while (pX != NULL) {
+        Polynomial temp;
+        temp = pX->coefficient * y;
+        temp = temp << (pX->exponent);
+        dest = temp + dest;
+        pX = pX->next;
     }
-    pnlTgt.sort();
-    return pnlTgt;
+    dest.sort();
+    return dest;
 }
 
 Polynomial operator/ (const Polynomial& x, const Polynomial& y) {
-    Polynomial pnlDividend = x;
-    Polynomial pnlDivisor = y;
-    Polynomial pnlResult;
-    Term* pTermDividend = pnlDividend.head;
-    if (pnlDividend.head->exponent < pnlDivisor.head->exponent) {
-        return pnlDividend;
+    Polynomial dividend = x;
+    Polynomial divisor = y;
+    Polynomial result;
+    Term* pDividend = dividend.head;
+    if (dividend.head->exponent < divisor.head->exponent) {
+        return dividend;
     }
-    while (pTermDividend != NULL && pTermDividend->exponent >= pnlDivisor.head->exponent) {
+    while (pDividend != NULL && pDividend->exponent >= divisor.head->exponent) {
         Term* termResult = new Term;
-        termResult->coefficient = pTermDividend->coefficient / pnlDivisor.head->coefficient;
-        termResult->exponent = pTermDividend->exponent - pnlDivisor.head->exponent;
-        pnlResult.insert(termResult);
-        pnlDividend = pnlDividend - ((pnlDivisor * termResult->coefficient)
+        termResult->coefficient = pDividend->coefficient / divisor.head->coefficient;
+        termResult->exponent = pDividend->exponent - divisor.head->exponent;
+        result.insert(termResult);
+        dividend = dividend - ((divisor * termResult->coefficient)
                 << termResult->exponent);
-        pTermDividend = pnlDividend.head;
+        pDividend = dividend.head;
     }
-    pnlResult.sort();
-    return pnlResult;
+    result.sort();
+    return result;
 }
 
 Polynomial operator% (const Polynomial& x, const Polynomial& y) {
-    Polynomial pnlDividend = x;
-    Polynomial pnlDivisor = y;
-    Polynomial pnlResult;
-    Term* pTermDividend = pnlDividend.head;
-    if (pnlDividend.head->exponent < pnlDivisor.head->exponent) {
-        return pnlDividend;
+    Polynomial dividend = x;
+    Polynomial divisor = y;
+    Polynomial result;
+    Term* pDividend = dividend.head;
+    if (dividend.head->exponent < divisor.head->exponent) {
+        return dividend;
     }
-    while (pTermDividend != NULL && pTermDividend->exponent >= pnlDivisor.head->exponent) {
+    while (pDividend != NULL && pDividend->exponent >= divisor.head->exponent) {
         Term* termResult = new Term;
-        termResult->coefficient = pTermDividend->coefficient / pnlDivisor.head->coefficient;
-        termResult->exponent = pTermDividend->exponent - pnlDivisor.head->exponent;
-        pnlResult.insert(termResult);
-        pnlDividend = pnlDividend - ((pnlDivisor * termResult->coefficient)
+        termResult->coefficient = pDividend->coefficient / divisor.head->coefficient;
+        termResult->exponent = pDividend->exponent - divisor.head->exponent;
+        result.insert(termResult);
+        dividend = dividend - ((divisor * termResult->coefficient)
                 << termResult->exponent);
-        pTermDividend = pnlDividend.head;
+        pDividend = dividend.head;
     }
-    pnlDividend.sort();
-    return pnlDividend;
+    dividend.sort();
+    return dividend;
 }
