@@ -83,6 +83,8 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 4. 在二叉树的线索链表存储结构上，编写程序实现求二叉树一个结点的中序遍历的前驱结点和后继结点的算法。
 5. 以上条要求为基础，编写程序实现对中序线索二叉树进行中序遍历的非递归算法，以适当的形式显示并保存二叉树和相应的中序遍历序列。
 
+* * *
+
 **<a name="Identification"></a>2.Which-Two-Kinds-of-Traversal-Can-Uniquely-Identify-a-Binary-Tree?**
 
 （二叉）树型结构一共有三种遍历方式，前序遍历、中序遍历及后序遍历，那么根据其中的哪两种可以唯一确定一个树呢？答案是中序遍历和前序遍历，抑或中序遍历和后序遍历。而仅知道前序遍历与后序遍历是无法确定一个树的，因为*前序遍历与后序遍历都是表达了左子树与右子树的相对关系并没有指明父结点的位置，缺失了创建一个树的必要信息，也就必然无法唯一确定一个树了。*
@@ -124,6 +126,8 @@ And Here is the algorithm:
 > 5) Call buildTree for elements after inIndex and make the built tree as right subtree of tNode.
 >
 > 6) return tNode.
+
+* * *
 
 **<a name="Huffman-Coding"></a>3.Huffman-Coding**
 
