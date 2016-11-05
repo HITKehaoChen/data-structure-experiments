@@ -15,8 +15,9 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 > [3.The-Road-to-the-Exit-of-Maze](#Maze)
 
 [Experiment-2nd](#Experiment-2nd)
-> [1.The-creation-and-Traversal-of-the-Binary-Tree-Structure](#Binary-Tree)
-
+> [1.The-Creation-and-Traversal-of-the-Binary-Tree-Structure](#Binary-Tree)
+>
+> [2.Which-Two-Kinds-of-Traversal-Can-Uniquely-Identify-a-Binary-Tree?](#Identification)
 
 <br>
 ## Contents of Each Experiment
@@ -68,7 +69,7 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 <br>
 ### <a name="Experiment-2nd"></a>Experiment-2nd: 树型结构及其应用
 
-**<a name="Binary-Tree"></a>1.The-creation-and-Traversal-of-the-Binary-Tree-Structure**
+**<a name="Binary-Tree"></a>1.The-Creation-and-Traversal-of-the-Binary-Tree-Structure**
 
 树型结构的遍历是树型结构算法的基础，本实验要求编写程序演示二叉树的存储结构的建立方法和遍历过程。 
 
@@ -79,6 +80,48 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 3. 在二叉树的二叉链表存储结构基础上，编写程序实现二叉树的中序线索链表存储结构建立的算法，以适当的形式显示并保存二叉树的相应的线索链表。
 4. 在二叉树的线索链表存储结构上，编写程序实现求二叉树一个结点的中序遍历的前驱结点和后继结点的算法。
 5. 以上条要求为基础，编写程序实现对中序线索二叉树进行中序遍历的非递归算法，以适当的形式显示并保存二叉树和相应的中序遍历序列。
+
+**<a name="Identification"></a>2.Which-Two-Kinds-of-Traversal-Can-Uniquely-Identify-a-Binary-Tree?**
+
+（二叉）树型结构一共有三种遍历方式，前序遍历、中序遍历及后序遍历，那么根据其中的哪两种可以唯一确定一个树呢？答案是中序遍历和前序遍历，抑或中序遍历和后序遍历。而仅知道前序遍历与后序遍历是无法确定一个树的，因为*前序遍历与后序遍历都是表达了左子树与右子树的相对关系并没有指明父结点的位置，缺失了创建一个树的必要信息，也就必然无法唯一确定一个树了。*
+
+下面以前序遍历和中序遍历唯一确定一个树为例：
+
+    Inorder sequence: D B E A F C
+    Preorder sequence: A B D E C F
+
+In a Preorder sequence, leftmost element is the root of the tree. So we know ‘A’ is root for given sequences. By searching ‘A’ in Inorder sequence, we can find out all elements on left side of ‘A’ are in left subtree and elements on right are in right subtree. So we know below structure now.
+
+                 A
+               /   \
+              /     \
+           D B E     F C
+
+We recursively follow above steps and get the following tree.
+
+             A
+           /   \
+          /     \
+        B        C
+       / \       /
+      /   \     /
+    D      E   F
+
+And Here is the algorithm:
+
+> Algorithm: buildTree()
+>
+> 1) Pick an element from Preorder. Increment a Preorder Index Variable (preIndex in below code) to pick next element in next recursive call.
+>
+> 2) Create a new tree node tNode with the data as picked element.
+>
+> 3) Find the picked element’s index in Inorder. Let the index be inIndex.
+>
+> 4) Call buildTree for elements before inIndex and make the built tree as left subtree of tNode.
+>
+> 5) Call buildTree for elements after inIndex and make the built tree as right subtree of tNode.
+>
+> 6) return tNode.
 
 <br>
 ## Others
