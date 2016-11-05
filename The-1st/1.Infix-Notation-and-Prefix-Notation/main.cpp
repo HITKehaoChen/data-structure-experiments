@@ -1,5 +1,5 @@
 #include <iostream>
-#include "mathExpression.h"
+#include "expression.h"
 
 size_t priorityTest(char);
 bool infixValidator(std::string);

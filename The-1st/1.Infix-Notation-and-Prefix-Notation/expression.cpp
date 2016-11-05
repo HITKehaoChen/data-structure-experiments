@@ -1,5 +1,5 @@
 #include <iostream>
-#include "mathExpression.h"
+#include "expression.h"
 
 
 bool operatorStack::isStackEmpty() {
@@ -51,3 +51,8 @@ double operandStack::pop() {
         return stack[top + 1];
     }
 }
+
+friend std::ifstream& operator>> (std::istream& input, Prefix& Tgt) {
+
+}
+
