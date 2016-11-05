@@ -1,11 +1,11 @@
-# Data-Structure-Experiments
+# Introduction
 
 This repository contains the content of every experiments on data structure course in Harbin Institute of Technology.
 
 As a learner, it is common for you to find some mistakes or pitfalls. If so, just point it out, with my deep appreciation.
 
 <br>
-## Index of Experiments
+# Index of Experiments
 
 [Experiment-1st](#Experiment-1st)
 > [1.Infix-Notation-and-Prefix-Notation](#expression)
@@ -22,11 +22,11 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 > [3.Huffman-Coding](#Huffman-Coding)
 
 <br>
-## Contents of Each Experiment
+# Contents of Each Experiment
 
-### <a name="Experiment-1st"></a>Experiment-1st: 线性结构及其应用
+## <a name="Experiment-1st"></a>Experiment-1st: 线性结构及其应用
 
-**<a name="Experiment-1st"></a><a name="expression"></a>1.Infix-Notation-and-Prefix-Notation**
+### <a name="expression"></a>1.Infix-Notation-and-Prefix-Notation
 
 > [>>>Code page<<<][11]
 
@@ -41,7 +41,7 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 
 * * *
 
-**<a name="Polynomial"></a>2.Polynomial**
+### <a name="Polynomial"></a>2.Polynomial
 
 > [>>>Code page<<<][12]
 
@@ -57,7 +57,7 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 
 * * *
 
-**<a name="Maze"></a>3.The-Road-to-the-Exit-of-Maze**
+### <a name="Maze"></a>3.The-Road-to-the-Exit-of-Maze
 
 > *Unfinished*
 
@@ -74,9 +74,9 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 
 <br>
 <br>
-### <a name="Experiment-2nd"></a>Experiment-2nd: 树型结构及其应用
+## <a name="Experiment-2nd"></a>Experiment-2nd: 树型结构及其应用
 
-**<a name="Binary-Tree"></a>1.The-Creation-and-Traversal-of-the-Binary-Tree-Structure**
+### <a name="Binary-Tree"></a>1.The-Creation-and-Traversal-of-the-Binary-Tree-Structure
 
 > *Unfinished*
 
@@ -92,7 +92,7 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 
 * * *
 
-**<a name="Identification"></a>2.Which-Two-Kinds-of-Traversal-Can-Uniquely-Identify-a-Binary-Tree?**
+### <a name="Identification"></a>2.Which-Two-Kinds-of-Traversal-Can-Uniquely-Identify-a-Binary-Tree?
 
 > *Unfinished*
 
@@ -138,7 +138,7 @@ And Here is the algorithm:
 
 * * *
 
-**<a name="Huffman-Coding"></a>3.Huffman-Coding**
+### <a name="Huffman-Coding"></a>3.Huffman-Coding
 
 > *Unfinished*
 
@@ -156,7 +156,7 @@ And Here is the algorithm:
 8. 上述1-5的编码是二进制的编码，采用K叉的哈夫曼树完成上述工作，实现“K进制”的编码和译码，并与二进制的编码和译码进行比较。
 
 <br>
-## Others
+# Others
 
 And if you would like to know more about my university, here is the entry for you:
 
