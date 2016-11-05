@@ -110,11 +110,17 @@ We recursively follow above steps and get the following tree.
 And Here is the algorithm:
 
 > Algorithm: buildTree()
+>
 > 1) Pick an element from Preorder. Increment a Preorder Index Variable (preIndex in below code) to pick next element in next recursive call.
+>
 > 2) Create a new tree node tNode with the data as picked element.
+>
 > 3) Find the picked element’s index in Inorder. Let the index be inIndex.
+>
 > 4) Call buildTree for elements before inIndex and make the built tree as left subtree of tNode.
+>
 > 5) Call buildTree for elements after inIndex and make the built tree as right subtree of tNode.
+>
 > 6) return tNode.
 
 <br>
