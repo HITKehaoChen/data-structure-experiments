@@ -13,14 +13,17 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 > [2.Polynomial](#Polynomial)
 >
 > [3.The-Road-to-the-Exit-of-Maze](#Maze)
->
+
+[Experiment-2nd](#Experiment-2nd)
+> [1.The-creation-and-Traversal-of-the-Binary-Tree-Structure](#Binary-Tree)
+
 
 <br>
 ## Contents of Each Experiment
 
-###Experiment-1st###
+### <a name="Experiment-1st"></a>Experiment-1st: 线性结构及其应用
 
-**<a name="Experiment-1st"></a><a name="expression"></a>线性结构及其应用(一）**
+**<a name="Experiment-1st"></a><a name="expression"></a>1.Infix-Notation-and-Prefix-Notation**
 
 表达式求值是实现程序设计语言的基本问题之一，也是栈的应用的一个典型例子。一个算术表达式是由操作数(operand)、运算符(operator)和界限符(delimiter)组成的。假设操作数是正整数，运算符只含加减乘除等四种运算符，界限符有左右括号和表达式起始、结束符“#”，如：#（7+15）\*（23-28/4）#。引入表达式起始、结束符是为了方便。设计一个程序，演示用算符优先法对算术表达式求值的过程。
 
@@ -33,7 +36,7 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 
 * * *
 
-**<a name="Polynomial"></a>线性结构及其应用(二）**
+**<a name="Polynomial"></a>2.Polynomial**
 
 设计线性表的链式存储结构，并实现一元多项式的代数运算。
 
@@ -47,7 +50,7 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 
 * * *
 
-**<a name="Maze"></a>线性结构及其应用(三）**
+**<a name="Maze"></a>3.The-Road-to-the-Exit-of-Maze**
 
 一个迷宫可以看成是由m×n个房间组成的矩形，迷宫内部的每个房间有8个方向，每个方向或者有障碍（如墙）而不能通过，或者无障碍（如有门）而能通过。入口为左上角房间，出口为右下角房间，问是否有路径从入口到出口，若有则输出一条这样的路径；否则，提示“迷宫无入口到出口的路经”。
 
@@ -61,6 +64,21 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 6.	以文件方式保存、并显示原始数据和结果。
 
 [>>>Code page<<<][1]
+
+<br>
+### <a name="Experiment-2nd"></a>Experiment-2nd: 树型结构及其应用
+
+**<a name="Binary-Tree"></a>1.The-creation-and-Traversal-of-the-Binary-Tree-Structure**
+
+树型结构的遍历是树型结构算法的基础，本实验要求编写程序演示二叉树的存储结构的建立方法和遍历过程。 
+
+实验要求：
+
+1. 至少采用两种方法，编写建立二叉树的二叉链表存储结构的程序，并以适当的形式显示并保存二叉树。
+2. 采用二叉树的二叉链表存储结构，编写程序实现二叉树的先序、中序和后序遍历的递归和非递归算法以及层序遍历算法，以适当的形式显示并保存二叉树和相应的遍历序列。
+3. 在二叉树的二叉链表存储结构基础上，编写程序实现二叉树的中序线索链表存储结构建立的算法，以适当的形式显示并保存二叉树的相应的线索链表。
+4. 在二叉树的线索链表存储结构上，编写程序实现求二叉树一个结点的中序遍历的前驱结点和后继结点的算法。
+5. 以上条要求为基础，编写程序实现对中序线索二叉树进行中序遍历的非递归算法，以适当的形式显示并保存二叉树和相应的中序遍历序列。
 
 <br>
 ## Others
