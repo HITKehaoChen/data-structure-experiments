@@ -1,37 +1,34 @@
 #include <iostream>
-#include "expression.h"
+#include "stack.h"
 
 size_t priorityTest(char);
-bool infixValidator(std::string);
-std::string removeWhitespaces(std::string);
-std::string convertInfixToPostfix(std::string);
-double calculatePostfix(std::string);
+
+std::string rmSpaces(std::string);
+
+std::string infixToPostfix(std::string);
+
+double calcPostfix(std::string);
 
 int main() {
     std::string infix, postfix;
     std::getline(std::cin, infix);
-    infix = removeWhitespaces(infix);
-    while (! infixValidator(infix)) {       // validate the input
-        std::cout << "Please input a valid infix expression !" << std::endl;
-        std::cout << "  (only digit in ones supported...)" << std::endl;
-        std::getline(std::cin, infix);
-    }
+    infix = rmSpaces(infix);
 
     std::cout << "What you have input is:" << std::endl
               << '\t' << infix << std::endl
               << "The process of conversion is:" << std::endl;
 
-    postfix = convertInfixToPostfix(infix);
+    postfix = infixToPostfix(infix);
     std::cout << "The converted postfix is:" << std::endl;
     std::cout << '\t' << postfix << std::endl;
     std::cout << std::string(30, '-') << std::endl;
 
-    double calculationResult;
-    postfix = removeWhitespaces(postfix);
+    double result;
+    postfix = rmSpaces(postfix);
     std::cout << "The process of calculation is:" << std::endl;
-    calculationResult = calculatePostfix(postfix);
+    result = calcPostfix(postfix);
     std::cout << "The value of the expression is:" << std::endl;
-    std::cout << '\t' << calculationResult << std::endl;
+    std::cout << '\t' << result << std::endl;
     return 0;
 }
 
@@ -44,60 +41,21 @@ size_t priorityTest(char x) {
     return 0;
 }
 
-bool isOperator(char x) {
-    switch (x) {
-        case '+':
-        case '-':
-        case '*':
-        case '/':
-            return true;
-        default:
-            return false;
-    }
-}
-
-bool isParentheses(char x) {
-    switch (x) {
-        case '(':
-        case ')':
-            return true;
-        default:
-            return false;
-    }
-}
-
-bool infixValidator(std::string infix) {
-    if (isOperator(infix[0]) || isOperator(infix[infix.length() - 1])) {
-        return false;
-    }
-    for (size_t i = 0; i < infix.length(); ++i) {
-        if (! isdigit(infix[i]) && ! isOperator(infix[i])
-                && ! isParentheses(infix[i])
-                || isOperator(infix[i]) && isOperator(infix[i + 1])
-                || isdigit(infix[i]) && isdigit(infix[i + 1])
-                || infix[i] == '(' && isOperator(infix[i + 1])
-                || infix[i + 1] == ')' && isOperator(infix[i])) {
-            return false;
-        }
-    }
-    return true;
-}
-
-std::string removeWhitespaces(std::string s) {
+std::string rmSpaces(std::string s) {
     while (s.find(' ') != std::string::npos) {
         s.erase(s.find(' '), 1);
     }
     return s;
 }
 
-std::string convertInfixToPostfix(std::string infix) {
+std::string infixToPostfix(std::string infix) {
     /*  Input: infix notation
      *  Output: the process of conversion
      *  Return Value: the converted postfix notation
-     *  */
+     */
     std::string postfix;
     size_t i = 0;
-    char stackTemp;
+    char temp;
     operatorStack s;
     while (infix[i] != '\0') {
         if (isdigit(infix[i])) {
@@ -106,24 +64,24 @@ std::string convertInfixToPostfix(std::string infix) {
             postfix += ' ';
         } else {
             /* if the token is an operator */
-            if(infix[i] == '(') {               // processing with '('
+            if (infix[i] == '(') {               // processing with '('
                 printf("\t%c pushed\n", infix[i]);
                 s.push(infix[i]);
             } else if (infix[i] == ')') {       // processing with ')'
-                while (! s.isStackEmpty() && (stackTemp = s.pop()) != '(') {
-                    printf("\t%c popped\n", stackTemp);
-                    postfix += stackTemp;
+                while (!s.isEmpty() && (temp = s.pop()) != '(') {
+                    printf("\t%c popped\n", temp);
+                    postfix += temp;
                     postfix += ' ';
                 }
             } else {                            // processing with normal operands
-                while (! s.isStackEmpty()) {
-                    stackTemp = s.pop();
-                    if (priorityTest(stackTemp) >= priorityTest(infix[i])) {
-                        printf("\t%c popped\n", stackTemp);
-                        postfix += stackTemp;
+                while (!s.isEmpty()) {
+                    temp = s.pop();
+                    if (priorityTest(temp) >= priorityTest(infix[i])) {
+                        printf("\t%c popped\n", temp);
+                        postfix += temp;
                         postfix += ' ';
                     } else {
-                        s.push(stackTemp);
+                        s.push(temp);
                         break;
                     }
                 }
@@ -133,18 +91,18 @@ std::string convertInfixToPostfix(std::string infix) {
         }
         ++i;
     }
-    while (! s.isStackEmpty()) {
+    while (!s.isEmpty()) {
         postfix += s.pop();
         postfix += ' ';
     }
     return postfix;
 }
 
-double calculatePostfix(std::string postfix) {
+double calcPostfix(std::string postfix) {
     /*  Input: postfix notation
     *  Output: the process of calculation
     *  Return Value: the calculated result
-    *  */
+    */
     double result;
     size_t i = 0;
     operandStack s;
@@ -152,7 +110,7 @@ double calculatePostfix(std::string postfix) {
     while (postfix[i] != '\0') {
         if (isdigit(postfix[i])) {
             /* if the token is an operand */
-            printf("\t%.1lf pushed\n", (double)(postfix[i] - '0'));
+            printf("\t%.1lf pushed\n", (double) (postfix[i] - '0'));
             s.push(postfix[i] - '0');
         } else {
             /* if the token is an operator */
