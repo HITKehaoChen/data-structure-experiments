@@ -29,7 +29,9 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 ### <a name="expression"></a>1.Infix-Notation-and-Prefix-Notation
 
 > Status: basically finished
+>
 > Things to be done: string processing, expression ADT...
+>
 > [>>>Code page<<<][11]
 
 表达式求值是实现程序设计语言的基本问题之一，也是栈的应用的一个典型例子。一个算术表达式是由操作数(operand)、运算符(operator)和界限符(delimiter)组成的。假设操作数是正整数，运算符只含加减乘除等四种运算符，界限符有左右括号和表达式起始、结束符“#”，如：#（7+15）\*（23-28/4）#。引入表达式起始、结束符是为了方便。设计一个程序，演示用算符优先法对算术表达式求值的过程。
@@ -46,7 +48,9 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 ### <a name="Polynomial"></a>2.Polynomial
 
 > Status: basically finished
+>
 > Things to be done: string processing...
+>
 > [>>>Code page<<<][12]
 
 设计线性表的链式存储结构，并实现一元多项式的代数运算。
