@@ -9,6 +9,8 @@ std::string infixToPostfix(std::string);
 
 double calcPostfix(std::string);
 
+void assignVar(std::string, double []);
+
 int main() {
     std::string infix, postfix;
     std::getline(std::cin, infix);
@@ -58,7 +60,7 @@ std::string infixToPostfix(std::string infix) {
     char temp;
     operatorStack s;
     while (infix[i] != '\0') {
-        if (isdigit(infix[i])) {
+        if (isdigit(infix[i]) || isalpha(infix[i])) {
             /* if the token is an operand */
             postfix += infix[i];
             postfix += ' ';
@@ -103,45 +105,57 @@ double calcPostfix(std::string postfix) {
     *  Output: the process of calculation
     *  Return Value: the calculated result
     */
+    double var[26]{};
+    assignVar(postfix, var);
+    for (size_t i = 0; i < 26; ++i) {
+        if (var[i] != 0) {
+            std::cout << "Please assign a value to the variable " << (char)(i + 'a')
+                      << ':' << std::endl << '\t';
+            std::cin >> var[i];
+        }
+    }
     double result;
     size_t i = 0;
     operandStack s;
-    double stackTemp;
     while (postfix[i] != '\0') {
+        double temp;
         if (isdigit(postfix[i])) {
             /* if the token is an operand */
             printf("\t%.1lf pushed\n", (double) (postfix[i] - '0'));
             s.push(postfix[i] - '0');
+        } else if (isalpha(postfix[i])) {
+            printf("\t%.1lf pushed\n", var[postfix[i] - 'a']);
+            s.push(var[postfix[i] - 'a']);
         } else {
             /* if the token is an operator */
             switch (postfix[i]) {
                 case '+':
                     result = 0;
-                    printf("\t%.1lf popped\n", stackTemp = s.pop());
-                    result += stackTemp;
-                    printf("\t%.1lf popped\n", stackTemp = s.pop());
-                    result += stackTemp;
+                    printf("\t%.1lf popped\n", temp = s.pop());
+                    result += temp;
+                    printf("\t%.1lf popped\n", temp = s.pop());
+                    result += temp;
                     break;
                 case '-':
                     result = 0;
-                    printf("\t%.1lf popped\n", stackTemp = s.pop());
-                    result += -stackTemp;
-                    printf("\t%.1lf popped\n", stackTemp = s.pop());
-                    result += stackTemp;
+                    printf("\t%.1lf popped\n", temp = s.pop());
+                    result += -temp;
+                    printf("\t%.1lf popped\n", temp = s.pop());
+                    result += temp;
                     break;
                 case '*':
                     result = 1;
-                    printf("\t%.1lf popped\n", stackTemp = s.pop());
-                    result *= stackTemp;
-                    printf("\t%.1lf popped\n", stackTemp = s.pop());
-                    result *= stackTemp;
+                    printf("\t%.1lf popped\n", temp = s.pop());
+                    result *= temp;
+                    printf("\t%.1lf popped\n", temp = s.pop());
+                    result *= temp;
                     break;
                 case '/':
                     result = 1.0;
-                    printf("\t%.1lf popped\n", stackTemp = s.pop());
-                    result *= 1.0 / stackTemp;
-                    printf("\t%.1lf popped\n", stackTemp = s.pop());
-                    result *= stackTemp;
+                    printf("\t%.1lf popped\n", temp = s.pop());
+                    result *= 1.0 / temp;
+                    printf("\t%.1lf popped\n", temp = s.pop());
+                    result *= temp;
                     break;
                 default:
                     result = 0;
@@ -153,4 +167,14 @@ double calcPostfix(std::string postfix) {
         ++i;
     }
     return s.pop();
+}
+
+void assignVar(std::string s, double var[]) {
+    size_t i = 0;
+    while (s[i] != '\0') {
+        if (isalpha(s[i])) {
+            var[s[i] - 'a'] = 1;
+        }
+        ++i;
+    }
 }
