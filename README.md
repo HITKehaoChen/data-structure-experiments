@@ -28,9 +28,9 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 
 ### <a name="expression"></a>1.Infix-Notation-and-Prefix-Notation
 
-> Status: basically finished
+> **Status**: basically finished
 >
-> Things to be done: string processing, expression ADT...
+> **Things to be done**: string processing, expression ADT...
 >
 > [>>>Code page<<<][11]
 
@@ -47,9 +47,9 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 
 ### <a name="Polynomial"></a>2.Polynomial
 
-> Status: basically finished
+> **Status**: basically finished
 >
-> Things to be done: string processing...
+> **Things to be done**: string processing...
 >
 > [>>>Code page<<<][12]
 
