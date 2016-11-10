@@ -28,6 +28,8 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 
 ### <a name="expression"></a>1.Infix-Notation-and-Prefix-Notation
 
+> Status: basically finished
+> Things to be done: string processing, expression ADT...
 > [>>>Code page<<<][11]
 
 表达式求值是实现程序设计语言的基本问题之一，也是栈的应用的一个典型例子。一个算术表达式是由操作数(operand)、运算符(operator)和界限符(delimiter)组成的。假设操作数是正整数，运算符只含加减乘除等四种运算符，界限符有左右括号和表达式起始、结束符“#”，如：#（7+15）\*（23-28/4）#。引入表达式起始、结束符是为了方便。设计一个程序，演示用算符优先法对算术表达式求值的过程。
@@ -43,6 +45,8 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 
 ### <a name="Polynomial"></a>2.Polynomial
 
+> Status: basically finished
+> Things to be done: string processing...
 > [>>>Code page<<<][12]
 
 设计线性表的链式存储结构，并实现一元多项式的代数运算。
@@ -59,7 +63,7 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 
 ### <a name="Maze"></a>3.The-Road-to-the-Exit-of-Maze
 
-> *Unfinished*
+> Status: *Unfinished*
 
 一个迷宫可以看成是由m×n个房间组成的矩形，迷宫内部的每个房间有8个方向，每个方向或者有障碍（如墙）而不能通过，或者无障碍（如有门）而能通过。入口为左上角房间，出口为右下角房间，问是否有路径从入口到出口，若有则输出一条这样的路径；否则，提示“迷宫无入口到出口的路经”。
 
@@ -77,7 +81,7 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 
 ### <a name="Binary-Tree"></a>1.The-Creation-and-Traversal-of-the-Binary-Tree-Structure
 
-> *Unfinished*
+> Status: *Working*
 
 树型结构的遍历是树型结构算法的基础，本实验要求编写程序演示二叉树的存储结构的建立方法和遍历过程。 
 
@@ -93,7 +97,7 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 
 ### <a name="Identification"></a>2.Which-Two-Kinds-of-Traversal-Can-Uniquely-Identify-a-Binary-Tree?
 
-> *Unfinished*
+> Status: *Unfinished*
 
 （二叉）树型结构一共有三种遍历方式，前序遍历、中序遍历及后序遍历，那么根据其中的哪两种可以唯一确定一个树呢？答案是中序遍历和前序遍历，抑或中序遍历和后序遍历。而仅知道前序遍历与后序遍历是无法确定一个树的，因为*前序遍历与后序遍历都是表达了左子树与右子树的相对关系并没有指明父结点的位置，缺失了创建一个树的必要信息，也就必然无法唯一确定一个树了。*
 
@@ -139,7 +143,7 @@ And Here is the algorithm:
 
 ### <a name="Huffman-Coding"></a>3.Huffman-Coding
 
-> *Unfinished*
+> Status: *Unfinished*
 
 哈夫曼编码是一种可以哈夫曼树（最优二叉树，带权路径长度最小的二叉树）为基础变长编码方式。它的基本思想是：将使用次数多的代码转换成长度较短的编码，而使用次数少的可以使用较长的编码，并且保持编码的唯一可解性。在计算机信息处理中，经常应用于数据压缩。是一种一致性编码法（又称"熵编码法"），用于数据的无损耗压缩。要求实现一个完整的哈夫曼编码与译码系统。
 
