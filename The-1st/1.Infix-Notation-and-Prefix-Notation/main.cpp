@@ -109,7 +109,7 @@ double calcPostfix(std::string postfix) {
     assignVar(postfix, var);
     for (size_t i = 0; i < 26; ++i) {
         if (var[i] != 0) {
-            std::cout << "Please assign a value to the variable " << (char)(i + 'a')
+            std::cout << "Please assign a value to the variable " << static_cast<char>(i + 'a')
                       << ':' << std::endl << '\t';
             std::cin >> var[i];
         }
