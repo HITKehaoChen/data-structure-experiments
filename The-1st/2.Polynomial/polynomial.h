@@ -3,8 +3,8 @@
 #include <iostream>
 
 struct Term {
-    Term* prev = NULL;
-    Term* next = NULL;
+    Term* prev = nullptr;
+    Term* next = nullptr;
     double coefficient = 1.0;
     int exponent = 0;
     Term() {};
@@ -13,7 +13,7 @@ struct Term {
 
 class Polynomial {
 private:
-    Term* head = NULL;
+    Term* head = nullptr;
     friend std::ostream& operator<< (std::ostream&, const Polynomial&);
     friend std::istream& operator>> (std::istream&, Polynomial&);
     friend Polynomial operator+ (const Polynomial&, const Polynomial&);

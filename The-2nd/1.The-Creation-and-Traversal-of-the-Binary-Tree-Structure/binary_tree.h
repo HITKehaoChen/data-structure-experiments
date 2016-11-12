@@ -7,8 +7,8 @@ template<typename T>
 class Node {
 private:
     T key;
-    Node* left = NULL;
-    Node* right = NULL;
+    Node* left = nullptr;
+    Node* right = nullptr;
 };
 
 class BinaryTree {
