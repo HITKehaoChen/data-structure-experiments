@@ -1,11 +1,10 @@
 #include <cmath>
 #include "polynomial.h"
 
-std::string rmSpaces(std::string s) {
+void rmSpaces(std::string& s) {
     while (s.find(' ') != std::string::npos) {
         s.erase(s.find(' '), 1);
     }
-    return s;
 }
 
 Term::Term(double x, int y) {
@@ -46,7 +45,7 @@ Polynomial& Polynomial::operator=(const Polynomial& x) {
 }
 
 Polynomial::Polynomial(Polynomial && x) : head{x.head} {
-    x.head = nullptrptr;
+    x.head = nullptr;
 }
 
 Polynomial& Polynomial::operator=(Polynomial&& x) {
@@ -56,7 +55,7 @@ Polynomial& Polynomial::operator=(Polynomial&& x) {
         delete(p);
     }
     head = x.head;
-    x.head = nullptrptr;
+    x.head = nullptr;
     return *this;
 }
 
@@ -143,7 +142,8 @@ std::istream& operator>> (std::istream& input, Polynomial& dest) {
     double coefficient[10] = {};
     std::string inputString;
     std::getline(input, inputString);
-    inputString = " " + rmSpaces(inputString); // insert a whitespace at the beginning for simplicity
+    rmSpaces(inputString);
+    inputString = ' ' + inputString;// insert a whitespace at the beginning for simplicity
 
     /* Process with the input */
     double cInput = 0;
