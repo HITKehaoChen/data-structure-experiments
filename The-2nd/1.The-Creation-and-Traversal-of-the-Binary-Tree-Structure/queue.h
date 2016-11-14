@@ -4,7 +4,7 @@
 #include <iostream>
 #include <stdexcept>
 
-/* data structure with concrete implementation */
+/* Data Structure with Concrete Implementations */
 
 template<typename T>
 class arrayQueue {
@@ -46,12 +46,12 @@ void arrayQueue<T>::enQueue(T x) {
     tail = (tail + 1) % capacity;
     ++size;
     if (head == tail) {
-        this->enlarge();
+        enlarge();
     }
 }
 
 template<typename T>
-void arrayQueue<T>::enlarge() {     // enlarge the capacity of the queue
+void arrayQueue<T>::enlarge() {     // Enlarge the capacity of the queue
     T* temp = new T[capacity * 2];
     for (size_t i = 0; i < size; ++i) {
         temp[i] = data[head];
@@ -65,18 +65,18 @@ void arrayQueue<T>::enlarge() {     // enlarge the capacity of the queue
 }
 
 
-/* abstract data type */
+/* Abstract Data Type */
 
 template<typename T>
 class adtQueue {
 private:
     arrayQueue<T> q;
 public:
-    T deQueue() { return q.deQueue(); };
+    T deQueue() { return q.deQueue(); }
 
     void enQueue(T x) { q.enQueue(x); }
 
-    bool isEmpty() const { return q.isEmpty(); };
+    bool isEmpty() const { return q.isEmpty(); }
 };
 
 #endif
