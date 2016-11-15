@@ -1,0 +1,5 @@
+With hash:
+ABDH##I##E##CF#J##G##
+
+Without hash:
+ABDHIECFJG

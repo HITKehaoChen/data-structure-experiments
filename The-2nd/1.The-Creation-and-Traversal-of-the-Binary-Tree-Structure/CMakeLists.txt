@@ -3,5 +3,5 @@ project(CPPTest)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp binary_tree.h queue.h stack.cpp stack.h)
+set(SOURCE_FILES main.cpp binary_tree.h queue.h stack.h)
 add_executable(CPPTest ${SOURCE_FILES})

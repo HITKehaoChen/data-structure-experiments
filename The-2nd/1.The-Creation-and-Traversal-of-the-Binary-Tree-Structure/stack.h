@@ -35,6 +35,7 @@ void arrayStack<T>::push(T x) {
         }
         delete[] data;
         data = temp;
+        capacity *= 2;
     }
     data[size] = x;
 }
@@ -49,26 +50,16 @@ T arrayStack<T>::pop() {
 
 /* abstract data type */
 
-class operatorStack {
+template <typename T>
+class adtStack {
 private:
-    arrayStack<char> stack;
+    arrayStack<T> stack;
 public:
-    bool isEmpty();
+    bool isEmpty() { return stack.isEmpty(); };
 
-    void push(char);
+    void push(T x) { stack.push(x); };
 
-    char pop();
-};
-
-class operandStack {
-private:
-    arrayStack<double> stack;
-public:
-    bool isEmpty();
-
-    void push(double);
-
-    double pop();
+    T pop() { return stack.pop(); };
 };
 
 #endif

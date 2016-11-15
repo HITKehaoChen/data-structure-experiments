@@ -35,6 +35,7 @@ void arrayStack<T>::push(T x) {
         }
         delete[] data;
         data = temp;
+        capacity *= 2;
     }
     data[size] = x;
 }

@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include "queue.h"
+#include "stack.h"
 
 /*
  * Things that need to be done:
@@ -20,6 +21,8 @@ struct Node {
     Node* parent = nullptr;
     Node* left = nullptr;
     Node* right = nullptr;
+    bool leftFlag = false;
+    bool rightFlag = false;
 };
 
 /* Tree classes */
@@ -29,37 +32,78 @@ class BinaryTree {
 private:
     Node<T>* root = nullptr;
 
-    void inOrder(Node<T>* p) const {
+    void inOrderR(Node<T>* p) const {
         if (p != nullptr) {
-            inOrder(p->left);
+            inOrderR(p->left);
             std::cout << p->key << ' ';
-            inOrder(p->right);
+            inOrderR(p->right);
         }
     }
 
-    void preOrder(Node<T>* p) const {
+    void preOrderR(Node<T>* p) const {
         if (p != nullptr) {
             std::cout << p->key << ' ';
-            preOrder(p->left);
-            preOrder(p->right);
+            preOrderR(p->left);
+            preOrderR(p->right);
         }
     }
 
-    void postOrder(Node<T>* p) const {
+    void postOrderR(Node<T>* p) const {
         if (p != nullptr) {
-            postOrder(p->left);
-            postOrder(p->right);
+            postOrderR(p->left);
+            postOrderR(p->right);
             std::cout << p->key << ' ';
+        }
+    }
+
+    void createWithHash(std::stringstream& sStream, Node<T>* p) {
+        char keyTemp;
+        sStream >> keyTemp;
+        if (keyTemp != '#') {
+            Node<T>* nodeTemp = new Node<T>;
+            nodeTemp->key = keyTemp;
+            p->left = nodeTemp;
+            createWithHash(sStream, p->left);
+        } else {
+            p->left = nullptr;
+        }
+        sStream >> keyTemp;
+        if (keyTemp != '#') {
+            Node<T>* nodeTemp = new Node<T>;
+            nodeTemp->key = keyTemp;
+            p->right = nodeTemp;
+            createWithHash(sStream, p->right);
+        } else {
+            p->right = nullptr;
         }
     }
 
     void destroy(Node<T>* p) {
-        if (p->left != nullptr) {
-            destroy(p->left);
-        } else if (p->right != nullptr) {
-            destroy(p->right);
+        if (p == nullptr) {
+            return;
         } else {
-            delete(p);
+            if (!p->leftFlag && p->left != nullptr) {
+                destroy(p->left);
+            }
+            if (!p->rightFlag && p->right != nullptr) {
+                destroy(p->right);
+            }
+            delete (p);
+        }
+    }
+
+    void threaded(Node<T>* node) {
+        if (node != nullptr) {
+            if (node->left != nullptr) {
+                threaded(node->left);
+            } else {
+                node->left = inOrderPredecessor(node);
+            }
+            if (node->right != nullptr) {
+                threaded(node->right);
+            } else {
+                node->right = inOrderSuccessor(node);
+            }
         }
     }
 
@@ -70,28 +114,28 @@ public:
         destroy(root);
     }
 
-    void inOrderWalk() const {
+    void inOrderWalkR() const {
         if (root != nullptr) {
-            inOrder(root->left);
+            inOrderR(root->left);
             std::cout << root->key << ' ';
-            inOrder(root->right);
+            inOrderR(root->right);
         }
         std::cout << std::endl;
     }
 
-    void preOrderWalk() const {
+    void preOrderWalkR() const {
         if (root != nullptr) {
             std::cout << root->key << ' ';
-            preOrder(root->left);
-            preOrder(root->right);
+            preOrderR(root->left);
+            preOrderR(root->right);
         }
         std::cout << std::endl;
     }
 
-    void postOrderWalk() const {
+    void postOrderWalkR() const {
         if (root != nullptr) {
-            postOrder(root->left);
-            postOrder(root->right);
+            postOrderR(root->left);
+            postOrderR(root->right);
             std::cout << root->key << ' ';
         }
         std::cout << std::endl;
@@ -100,7 +144,7 @@ public:
     void levelWalk() const {
         adtQueue<Node<T>*> queue;
         queue.enQueue(root);
-        while (! queue.isEmpty()) {
+        while (!queue.isEmpty()) {
             Node<T>* temp = queue.deQueue();
             if (temp->left != nullptr) {
                 queue.enQueue(temp->left);
@@ -162,6 +206,194 @@ public:
             }
         }
     }
+
+    void createWithHash(std::string& string) {
+        std::stringstream sStream(string);
+        char keyTemp;
+        sStream >> keyTemp;
+        insert(keyTemp);
+        createWithHash(sStream, root);
+    }
+
+    void createWithoutHash(std::string& string) {
+        std::stringstream sStream(string);
+        char keyTemp;
+        while (sStream >> keyTemp) {
+            insert(keyTemp);
+        }
+    }
+
+    void preOrderWalk() const {
+        adtStack<Node<T>*> stack;
+        Node<T>* walker = root;
+        bool isDone = false;
+        while (!isDone) {
+            if (walker != nullptr) {
+                std::cout << walker->key << ' ';
+                stack.push(walker);
+                walker = walker->left;
+            } else {
+                if (!stack.isEmpty()) {
+                    walker = stack.pop();
+                    walker = walker->right;
+                } else {
+                    isDone = true;
+                }
+            }
+        }
+        std::cout << std::endl;
+    }
+
+    void inOrderWalk() const {
+        adtStack<Node<T>*> stack;
+        Node<T>* walker = root;
+        bool isDone = false;
+        while (!isDone) {
+            if (walker != nullptr) {
+                stack.push(walker);
+                walker = walker->left;
+            } else {
+                if (!stack.isEmpty()) {
+                    walker = stack.pop();
+                    std::cout << walker->key << ' ';
+                    walker = walker->right;
+                } else {
+                    isDone = true;
+                }
+            }
+        }
+        std::cout << std::endl;
+    }
+
+    void postOrderWalk() const {
+        adtStack<std::pair<Node<T>*, bool>> pStack;
+        T keyStack;
+        Node<T>* walker = root;
+        bool isDone = false;
+        while (!isDone) {
+            if (walker != nullptr) {
+                std::pair<Node<T>*, bool> temp;
+                temp.first = walker;
+                temp.second = false;
+                pStack.push(temp);
+                walker = walker->left;
+            } else {
+                if (!pStack.isEmpty()) {
+                    std::pair<Node<T>*, bool> temp;
+                    temp = pStack.pop();
+                    walker = temp.first;
+                    if (!temp.second) {
+                        walker = walker->right;
+                        temp.second = true;
+                        pStack.push(temp);
+                    } else {
+                        std::cout << walker->key << ' ';
+                        walker = nullptr;
+                    }
+                } else {
+                    isDone = true;
+                }
+            }
+        }
+        std::cout << std::endl;
+    }
+
+    Node<T>* inOrderSuccessor(Node<T>* p) const {
+        if (p->right != nullptr && ! p->rightFlag) {
+            p = p->right;
+            while (! p->leftFlag && p->left != nullptr) {
+                p = p->left;
+            }
+            return p;
+        } else {
+            Node<T>* walker = p;
+            Node<T>* parent = p->parent;
+            while (parent != nullptr && walker == parent->right) {
+                walker = parent;
+                parent = walker->parent;
+            }
+            p->rightFlag = true;
+            return parent;
+        }
+    }
+
+    Node<T>* inOrderPredecessor(Node<T>* p) const {
+        if (p->left != nullptr) {
+            p = p->left;
+            while (p->right != nullptr) {
+                p = p->right;
+            }
+            return p;
+        } else {
+            Node<T>* walker = p;
+            Node<T>* parent = p->parent;
+            while (parent != nullptr && walker == parent->left) {
+                walker = parent;
+                parent = walker->parent;
+            }
+            p->leftFlag = true;
+            return parent;
+        }
+    }
+
+    void getThreaded() {
+        threaded(root);
+    }
+
+    Node<T>* threadedPreOrderSuccessor(Node<T>* p) const {
+        if (! p->leftFlag) {
+            return p->left;
+        } else {
+            while (p->rightFlag && p->right != nullptr) {
+                p = p->right;
+            }
+            return p->right;
+        }
+    }
+
+    Node<T>* threadedInOrderSuccessor(Node<T>* p) const {
+        if (p->rightFlag) {
+            return p->right;
+        } else {
+            return inOrderSuccessor(p);
+        }
+    }
+
+    Node<T>* threadedPostOrderSuccessor(Node<T>* p) const {
+        if (p->rightFlag && p->right != nullptr) {
+            return inOrderSuccessor(p->right);
+        } else {
+            return inOrderSuccessor(p);
+        }
+    }
+
+    void threadPreOrderWalk() const {
+        Node<T>* temp = root;
+        while (temp != nullptr) {
+            std::cout << temp->key << ' ';
+            temp = threadedPreOrderSuccessor(temp);
+        }
+        std::cout << std::endl;
+    }
+
+    void threadedInOrderWalk() const {
+        Node<T>* temp = root;
+        while (temp != nullptr) {
+            std::cout << temp->key << ' ';
+            temp = threadedInOrderSuccessor(temp);
+        }
+        std::cout << std::endl;
+    }
+
+    void threadedPostOrderWalk() const {
+        Node<T>* temp = root;
+        while (temp != nullptr) {
+            std::cout << temp->key << ' ';
+            temp = threadedPostOrderSuccessor(temp);
+        }
+        std::cout << std::endl;
+    }
+
 };
 
 /* Other Functions */
@@ -178,12 +410,6 @@ std::istream& operator>>(std::istream& input, BinaryTree<T>& tree) {
         tree.insert(temp);
     }
     return input;
-}
-
-void CreateByRecursion(std::stringstream& sStream, Node<T>* p) {
-    char keyTemp;
-    sStream >> keyTemp;
-    
 }
 
 #endif
