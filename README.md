@@ -176,6 +176,6 @@ And if you would like to know more about my university, here is the entry for yo
 [11]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-1st/1.Infix-Notation-and-Prefix-Notation "Go to the code page"
 [12]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-1st/2.Polynomial "Go to the code page"
 
-[22]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-2nd/1.The-Creation-and-Traversal-of-the-Binary-Tree-Structure "Go to the code page"
+[21]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-2nd/1.The-Creation-and-Traversal-of-the-Binary-Tree-Structure "Go to the code page"
 
 [100]: https://en.wikipedia.org/wiki/Harbin_Institute_of_Technology "More information"
