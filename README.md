@@ -30,9 +30,9 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 
 > **Status**: basically finished
 >
-> **Things to be done**: string processing, expression ADT...
+> **Things to Be Done**: string processing, expression ADT...
 >
-> [>>>Code page<<<][11]
+> [>>>Code Page<<<][11]
 
 表达式求值是实现程序设计语言的基本问题之一，也是栈的应用的一个典型例子。一个算术表达式是由操作数(operand)、运算符(operator)和界限符(delimiter)组成的。假设操作数是正整数，运算符只含加减乘除等四种运算符，界限符有左右括号和表达式起始、结束符“#”，如：#（7+15）\*（23-28/4）#。引入表达式起始、结束符是为了方便。设计一个程序，演示用算符优先法对算术表达式求值的过程。
 
@@ -49,9 +49,9 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 
 > **Status**: basically finished
 >
-> **Things to be done**: string processing...
+> **Things to Be Done**: string processing...
 >
-> [>>>Code page<<<][12]
+> [>>>Code Page<<<][12]
 
 设计线性表的链式存储结构，并实现一元多项式的代数运算。
 
@@ -85,7 +85,11 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 
 ### <a name="Binary-Tree"></a>1.The-Creation-and-Traversal-of-the-Binary-Tree-Structure
 
-> **Status**: *Working*
+> **Status**: basically finished
+>
+> **Things to Be Done**: template, classes and more visual friendliness
+>
+> [>>>Code Page<<<][21]
 
 树型结构的遍历是树型结构算法的基础，本实验要求编写程序演示二叉树的存储结构的建立方法和遍历过程。 
 
@@ -171,5 +175,7 @@ And if you would like to know more about my university, here is the entry for yo
 
 [11]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-1st/1.Infix-Notation-and-Prefix-Notation "Go to the code page"
 [12]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-1st/2.Polynomial "Go to the code page"
+
+[22]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-2nd/1.The-Creation-and-Traversal-of-the-Binary-Tree-Structure "Go to the code page"
 
 [100]: https://en.wikipedia.org/wiki/Harbin_Institute_of_Technology "More information"
