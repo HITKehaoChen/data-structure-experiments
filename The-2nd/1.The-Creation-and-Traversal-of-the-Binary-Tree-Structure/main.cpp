@@ -23,13 +23,14 @@ int main() {
     std::cout << "Please input a tree in pre-order (WITHOUT '#'):" << std::endl;
     std::cout << '\t';
     std::cin.ignore();
-    std::string stringNoHash;
+    std::string stringNoHash("ABDHIECFJG");
     std::getline(std::cin, stringNoHash);
     treeNoHash.createWithoutHash(stringNoHash);
     std::cout << "The tree created without '#' in pre-order is (WITH RECURSION):" << std::endl;
     std::cout << '\t';
     treeNoHash.preOrderWalkR();
-    std::cout << std::endl << std::endl;
+    std::cout << std::endl;
+
 
     /* Traversal */
     std::cout << "The tree created without '#' in in-order is (WITH RECURSION):" << std::endl;
@@ -51,7 +52,8 @@ int main() {
     std::cout << "The tree created without '#' in post-order is: (WITHOUT RECURSION)" << std::endl;
     std::cout << '\t';
     treeNoHash.postOrderWalk();
-    std::cout << std::endl << std::endl;
+    std::cout << std::endl <<  std::string(60, '-') << std::endl << std::endl;
+
 
     /* Threaded Tree */
     treeNoHash.getThreaded();
@@ -61,9 +63,9 @@ int main() {
     std::cout << "A threaded tree in in-order is:" << std::endl;
     std::cout << '\t';
     treeNoHash.threadedInOrderWalk();
-//    std::cout << "A threaded tree in post-order is:" << std::endl;
-//    std::cout << '\t';
-//    treeNoHash.threadedPostOrderWalk();
+    std::cout << "A threaded tree in post-order is:" << std::endl;
+    std::cout << '\t';
+    treeNoHash.threadedPostOrderWalk();
 
     return 0;
 }

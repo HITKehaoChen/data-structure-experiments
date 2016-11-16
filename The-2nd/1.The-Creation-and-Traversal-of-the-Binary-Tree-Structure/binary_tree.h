@@ -360,12 +360,53 @@ public:
     }
 
     Node<T>* threadedPostOrderSuccessor(Node<T>* p) const {
-        if (p->rightFlag && p->right != nullptr) {
-            return inOrderSuccessor(p->right);
+        Node<T>* walker = p;
+        if (p->parent == nullptr) {
+            return nullptr;
+        }
+        if (p == p->parent->left) {
+            if (inOrderSuccessor(p->parent) == nullptr) {
+                return p->parent;
+            } else {
+                Node<T>* temp = p->parent->right;
+                bool isDone = false;
+                while (! isDone) {
+                    while (!temp->leftFlag) {
+                        temp = temp->left;
+                    }
+                    if (! temp->rightFlag) {
+                        temp = temp->right;
+                    } else {
+                        isDone = true;
+                    }
+                }
+                return temp;
+            }
         } else {
-            return inOrderSuccessor(p);
+            return p->parent;
         }
     }
+//        Node<T>* walkerBehind = p;
+//        Node<T>* walkerAhead = p->parent;
+//        while (walkerAhead->rightFlag) {
+//            walkerBehind = walkerAhead;
+//            walkerAhead = walkerAhead->parent;
+//        }
+//        if (walkerBehind == walkerAhead->right) {
+//            return walkerAhead;
+//        } else {
+//            if (inOrderSuccessor(p->right) == nullptr) {
+//                return p->right;
+//            } else {
+//                return inOrderSuccessor(p->right);
+//            }
+//        }
+//    }
+//            if (inOrderSuccessor(p->right) == nullptr) {
+//                return p->right;
+//            } else {
+//                return inOrderSuccessor(p->right);
+//            }
 
     void threadPreOrderWalk() const {
         Node<T>* temp = root;
@@ -387,6 +428,17 @@ public:
 
     void threadedPostOrderWalk() const {
         Node<T>* temp = root;
+        bool isDone = false;
+        while (! isDone) {
+            while (!temp->leftFlag) {
+                temp = temp->left;
+            }
+            if (! temp->rightFlag) {
+                temp = temp->right;
+            } else {
+                isDone = true;
+            }
+        }
         while (temp != nullptr) {
             std::cout << temp->key << ' ';
             temp = threadedPostOrderSuccessor(temp);
