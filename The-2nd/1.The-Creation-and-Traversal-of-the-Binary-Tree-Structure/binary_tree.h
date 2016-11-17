@@ -386,27 +386,6 @@ public:
             return p->parent;
         }
     }
-//        Node<T>* walkerBehind = p;
-//        Node<T>* walkerAhead = p->parent;
-//        while (walkerAhead->rightFlag) {
-//            walkerBehind = walkerAhead;
-//            walkerAhead = walkerAhead->parent;
-//        }
-//        if (walkerBehind == walkerAhead->right) {
-//            return walkerAhead;
-//        } else {
-//            if (inOrderSuccessor(p->right) == nullptr) {
-//                return p->right;
-//            } else {
-//                return inOrderSuccessor(p->right);
-//            }
-//        }
-//    }
-//            if (inOrderSuccessor(p->right) == nullptr) {
-//                return p->right;
-//            } else {
-//                return inOrderSuccessor(p->right);
-//            }
 
     void threadPreOrderWalk() const {
         Node<T>* temp = root;
