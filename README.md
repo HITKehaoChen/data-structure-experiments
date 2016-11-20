@@ -105,7 +105,7 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 
 ### <a name="Identification"></a>2.Which-Two-Kinds-of-Traversal-Can-Uniquely-Identify-a-Binary-Tree?
 
-> **Status**: *Unfinished*
+> **Status**: *Working*
 
 （二叉）树型结构一共有三种遍历方式，前序遍历、中序遍历及后序遍历，那么根据其中的哪两种可以唯一确定一个树呢？答案是中序遍历和前序遍历，抑或中序遍历和后序遍历。而仅知道前序遍历与后序遍历是无法确定一个树的，因为*前序遍历与后序遍历都是表达了左子树与右子树的相对关系并没有指明父结点的位置，缺失了创建一个树的必要信息，也就必然无法唯一确定一个树了。*
 
@@ -151,7 +151,7 @@ And Here is the algorithm:
 
 ### <a name="Huffman-Coding"></a>3.Huffman-Coding
 
-> **Status**: *Unfinished*
+> **Status**: *Working*
 
 哈夫曼编码是一种可以哈夫曼树（最优二叉树，带权路径长度最小的二叉树）为基础变长编码方式。它的基本思想是：将使用次数多的代码转换成长度较短的编码，而使用次数少的可以使用较长的编码，并且保持编码的唯一可解性。在计算机信息处理中，经常应用于数据压缩。是一种一致性编码法（又称"熵编码法"），用于数据的无损耗压缩。要求实现一个完整的哈夫曼编码与译码系统。
 
