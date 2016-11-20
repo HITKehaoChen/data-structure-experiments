@@ -107,8 +107,9 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 
 > **Status**: basically finished
 >
-> **Things to Be Done**: template, classes and more visual friendliness
+> **Things to Be Done**: more visual friendliness
 >
+> [>>>Code Page<<<][22]
 
 （二叉）树型结构一共有三种遍历方式，前序遍历、中序遍历及后序遍历，那么根据其中的哪两种可以唯一确定一个树呢？答案是中序遍历和前序遍历，抑或中序遍历和后序遍历。而仅知道前序遍历与后序遍历是无法确定一个树的，因为*前序遍历与后序遍历都是表达了左子树与右子树的相对关系并没有指明父结点的位置，缺失了创建一个树的必要信息，也就必然无法唯一确定一个树了。*
 
@@ -177,8 +178,11 @@ And if you would like to know more about my university, here is the entry for yo
 [Harbin Institue of Technology][100]
 
 [11]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-1st/1.Infix-Notation-and-Prefix-Notation "Go to the code page"
+
 [12]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-1st/2.Polynomial "Go to the code page"
 
 [21]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-2nd/1.The-Creation-and-Traversal-of-the-Binary-Tree-Structure "Go to the code page"
+
+[22]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-2nd/2.Which-Two-Kinds-of-Traversal-Can-Uniquely-Identify-a-Binary-Tree%3F "Go to the code page"
 
 [100]: https://en.wikipedia.org/wiki/Harbin_Institute_of_Technology "More information"
