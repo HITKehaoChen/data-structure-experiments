@@ -21,6 +21,9 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 >
 > [3.Huffman-Coding](#Huffman-Coding)
 
+[Experiment-3rd](#Experiment-3rd)
+> [1.The-Creation-and-Traversal-of-the-Undirected-Graph](#Undirected-Graph)
+
 <br>
 # Contents of Each Experiment
 
@@ -169,6 +172,24 @@ And Here is the algorithm:
 6. 能否利用堆结构，优化的哈夫曼编码算法。
 7. 上述1-5的编码和译码是基于字符的压缩，考虑基于单词的压缩，完成上述工作，讨论并比较压缩效果。
 8. 上述1-5的编码是二进制的编码，采用K叉的哈夫曼树完成上述工作，实现“K进制”的编码和译码，并与二进制的编码和译码进行比较。
+
+<br>
+## <a name="Experiment-3rd"></a>Experiment-3rd: 图型结构及其应用
+
+### <a name="Undirected-Graph"></a>1.The-Creation-and-Traversal-of-the-Undirected-Graph
+
+> **Status**: *WORKING*
+
+图的搜索（遍历）算法是图型结构相关算法的基础，本实验要求编写程序演示无向图三种典型存储结构的建立和（搜索）遍历过程。
+
+实验要求：
+
+1. 分别实现无向图的邻接矩阵、邻接表和邻接多重表存储结构的建立算法，分析和比较各建立算法的时间复杂度以及存储结构的空间占用情况。
+2. 实现无向图的邻接矩阵、邻接表和邻接多重表三种存储结构的相互转换算法。
+3. 在上述三种存储结构上，分别实现无向图的深度优先搜索（递归和非递归)和广度优先搜索算法。并以适当的方式存储和显示相应的搜索结果（深度优先或广度优先生成森林（或生成树）、深度优先或广度优先序列和编号）。
+4. 分析搜索算法的时间复杂度。
+5. 以文件形式输入图的顶点和边，并显示相应的结果。要求顶点不少于10个，边不少于13个。
+6. 软件功能结构安排合理，界面友好，便于使用。
 
 <br>
 # Others
