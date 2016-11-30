@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -g   CMakeFiles/2_Which_Two_Kinds_of_Traversal_Can_Uniquely_Identify_a_Binary_Tree_.dir/main.cpp.o CMakeFiles/2_Which_Two_Kinds_of_Traversal_Can_Uniquely_Identify_a_Binary_Tree_.dir/treeConstruction.cpp.o  -o 2_Which_Two_Kinds_of_Traversal_Can_Uniquely_Identify_a_Binary_Tree_ 
