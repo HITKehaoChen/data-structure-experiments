@@ -1,0 +1,3 @@
+/home/andi-mckee/Desktop/Data-Structure/The-2nd/2.Which-Two-Kinds-of-Traversal-Can-Uniquely-Identify-a-Binary-Tree?/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/andi-mckee/Desktop/Data-Structure/The-2nd/2.Which-Two-Kinds-of-Traversal-Can-Uniquely-Identify-a-Binary-Tree?/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/andi-mckee/Desktop/Data-Structure/The-2nd/2.Which-Two-Kinds-of-Traversal-Can-Uniquely-Identify-a-Binary-Tree?/cmake-build-debug/CMakeFiles/2_Which_Two_Kinds_of_Traversal_Can_Uniquely_Identify_a_Binary_Tree_.dir
