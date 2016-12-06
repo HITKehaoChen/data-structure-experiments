@@ -93,6 +93,12 @@
 		<Unit filename="/home/andi-mckee/Desktop/Data-Structure/The-3rd/1.The-Creation-and-Traversal-of-the-Undirected-Graph/main.cpp">
 			<Option target="1_The_Creation_and_Traversal_of_the_Undirected_Graph"/>
 		</Unit>
+		<Unit filename="/home/andi-mckee/Desktop/Data-Structure/The-3rd/1.The-Creation-and-Traversal-of-the-Undirected-Graph/queue.h">
+			<Option target="1_The_Creation_and_Traversal_of_the_Undirected_Graph"/>
+		</Unit>
+		<Unit filename="/home/andi-mckee/Desktop/Data-Structure/The-3rd/1.The-Creation-and-Traversal-of-the-Undirected-Graph/stack.h">
+			<Option target="1_The_Creation_and_Traversal_of_the_Undirected_Graph"/>
+		</Unit>
 		<Unit filename="/home/andi-mckee/Desktop/Data-Structure/The-3rd/1.The-Creation-and-Traversal-of-the-Undirected-Graph/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

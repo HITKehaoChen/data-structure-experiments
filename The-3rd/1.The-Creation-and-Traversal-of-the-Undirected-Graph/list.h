@@ -3,7 +3,7 @@
 
 template <typename T>
 struct NodeLinked {
-    T key;
+    T key = 0;
     NodeLinked* next = nullptr;
     NodeLinked* prev = nullptr;
 };
@@ -47,11 +47,19 @@ public:
         while (walker != nil && walker->key != x) {
             walker = walker->next;
         }
-        if (walker->key == x) {
+        if (walker->key == x && walker != nil) {
             return walker;
         } else {
             return nullptr;
         }
+    }
+
+    NodeLinked<T>* getHead() const {        // TODO: kill these two
+        return nil->next;
+    }
+
+    NodeLinked<T>* getNil() const {
+        return nil;
     }
 };
 
