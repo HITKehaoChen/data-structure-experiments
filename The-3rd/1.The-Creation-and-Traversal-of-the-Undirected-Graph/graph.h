@@ -159,6 +159,7 @@ public:
             delete[] vertex[i];
         }
         delete[] vertex;
+        delete[] visited;
     }
 
     virtual void addEdge(std::size_t i, std::size_t j) override {
@@ -243,6 +244,7 @@ public:
             delete vertex[i];
         }
         delete[] vertex;
+        delete[] visited;
     }
 
     virtual void addEdge(std::size_t i, std::size_t j) override {
@@ -412,6 +414,7 @@ public:
             }
         }
         delete[] vertex;
+        delete[] visited;
     }
 
     virtual void addEdge(std::size_t i, std::size_t j) override {
