@@ -22,7 +22,7 @@ int main() {
     (*graphTest).addEdge(3, 4, 60);
     printGraph(*graphTest);
     std::cout << std::string(60, '*') << std::endl;
-    (*graphTest).Dijkstra(0);
+    (*graphTest).FloydWarshall();
 
     return 0;
 }

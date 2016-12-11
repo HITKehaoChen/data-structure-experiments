@@ -96,10 +96,9 @@ public:
         restoreVisited();
     }
 
-    void Dijkstra(std::size_t src) const {
+    void Dijkstra(std::size_t src) const {      // TODO: optimize the time complexity
         // An array to record path information.
-//        int* parent = new int[getVertexNum()];
-        int parent[200];
+        int* parent = new int[getVertexNum()];
         // Initialize the short path tree set and distance records;
         bool* sptSet = new bool[getVertexNum()];    // SPF: Short Path Tree
         int* dist = new int[getVertexNum()];
@@ -157,6 +156,91 @@ public:
 
         delete[] sptSet;
         delete[] dist;
+    }
+
+    void FloydWarshall() const {
+        // Initialize solution matrix.
+        int** dist = new int*[getVertexNum()];
+        int** parent = new int*[getVertexNum()];
+        for (std::size_t i = 0; i < getVertexNum(); ++i) {
+            dist[i] = new int[getVertexNum()];
+            parent[i] = new int[getVertexNum()];
+        }
+        for (std::size_t i = 0; i < getVertexNum(); ++i) {
+            for (std::size_t j = 0; j < getVertexNum(); ++j) {
+                if (isEdge(i, j)) {
+                    dist[i][j] = getWeight(i, j);
+                } else if (i == j) {
+                    dist[i][j] = 0;
+                } else {
+                    dist[i][j] = std::numeric_limits<int>::max();
+                }
+            }
+        }
+
+        for (std::size_t i = 0; i < getVertexNum(); ++i) {
+            parent[i][i] = -1;
+            for (std::size_t j = 0; j < getVertexNum(); ++j) {
+                if (j != i) {
+                    parent[i][j] = static_cast<int>(i);
+                }
+                for (std::size_t k = 0; k < getVertexNum(); ++k) {
+                    if (dist[i][k] != std::numeric_limits<int>::max()
+                        && dist[k][j] != std::numeric_limits<int>::max()
+                        && dist[i][j] > dist[i][k] + dist[k][j]) {
+                        dist[i][j] = dist[i][k] + dist[k][j];
+                        parent[i][k] = static_cast<int>(i);
+                        parent[i][j] = static_cast<int>(k);
+                    }
+                }
+            }
+        }
+
+        // Print the distance between all pairs.
+        std::cout << "Following matrix shows the shortest distances "
+                "between every pair of vertices:" << std::endl;
+        for (std::size_t i = 0; i < getVertexNum(); ++i) {
+            for (std::size_t j = 0; j < getVertexNum(); ++j) {
+                if (dist[i][j] == std::numeric_limits<int>::max()) {
+                    std::cout << "INF ";
+                } else {
+                    std::cout << dist[i][j] << "  ";
+                }
+            }
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
+
+        // Print each path.
+        std::cout << "There is each path:" << std::endl;
+        for (std::size_t i = 0; i < getVertexNum(); ++i) {
+            for (std::size_t j = 0; j < getVertexNum(); ++j) {
+                if (dist[i][j] != std::numeric_limits<int>::max()
+                        && dist[i][j] != 0) {
+                    std::cout << "From " << i + 1 << " to " << j + 1
+                              << ':' << std::endl;
+                    int walker = static_cast<int>(j);
+                    stackADT<int> s;
+                    while (walker != -1) {
+                        s.push(walker);
+                        walker = parent[i][walker];
+                    }
+                    std::cout << s.pop() + 1;
+                    while (!s.isEmpty()) {
+                        std::cout << " -> " << s.pop() + 1;
+                    }
+                    std::cout << std::endl << std::endl;
+                }
+            }
+        }
+
+        // Destroy solution matrix.
+        for (std::size_t i = 0; i < getVertexNum(); ++i) {
+            delete[] dist[i];
+            delete[] parent[i];
+        }
+        delete[] dist;
+        delete[] parent;
     }
 };
 
