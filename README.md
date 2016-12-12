@@ -180,7 +180,11 @@ And Here is the algorithm:
 
 ### <a name="Undirected-Graph"></a>1.The-Creation-and-Traversal-of-the-Undirected-Graph
 
-> **Status**: *WORKING*
+> **Status**: basically finished
+>
+> **Things to Be Done**: delete some unnecessary member functions
+>
+> [>>>Code Page<<<][31]
 
 图的搜索（遍历）算法是图型结构相关算法的基础，本实验要求编写程序演示无向图三种典型存储结构的建立和（搜索）遍历过程。
 
@@ -198,6 +202,10 @@ And Here is the algorithm:
 ### <a name="Shortest-Path"></a>2.Dijkstra's-and-Floyd-Warshall's-Algorithms
 
 > **Status**: basically finished
+>
+> **Things to Be Done**: delete some unnecessary member functions, optimization
+>
+> [>>>Code Page<<<][32]
 
 最短路径算法的实现
 
@@ -225,5 +233,9 @@ And if you would like to know more about my university, here is the entry for yo
 [21]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-2nd/1.The-Creation-and-Traversal-of-the-Binary-Tree-Structure "Go to the code page"
 
 [22]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-2nd/2.Which-Two-Kinds-of-Traversal-Can-Uniquely-Identify-a-Binary-Tree%3F "Go to the code page"
+
+[31]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-3rd/1.The-Creation-and-Traversal-of-the-Undirected-Graph
+
+[32]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-3rd/2.Dijkstra's-and-Floyd-Warshall's-Algorithms
 
 [100]: https://en.wikipedia.org/wiki/Harbin_Institute_of_Technology "More information"
