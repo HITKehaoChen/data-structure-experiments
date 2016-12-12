@@ -159,39 +159,44 @@ public:
     }
 
     void FloydWarshall() const {
-        // Initialize solution matrix.
+        // Initialize solution matrixes.
         int** dist = new int*[getVertexNum()];
         int** parent = new int*[getVertexNum()];
+        bool** reach = new bool*[getVertexNum()];
         for (std::size_t i = 0; i < getVertexNum(); ++i) {
             dist[i] = new int[getVertexNum()];
             parent[i] = new int[getVertexNum()];
+            reach[i] = new bool[getVertexNum()];
         }
         for (std::size_t i = 0; i < getVertexNum(); ++i) {
             for (std::size_t j = 0; j < getVertexNum(); ++j) {
                 if (isEdge(i, j)) {
                     dist[i][j] = getWeight(i, j);
+                    parent[i][j] = static_cast<int>(i);
+                    reach[i][j] = true;
                 } else if (i == j) {
                     dist[i][j] = 0;
+                    parent[i][j] = -1;
+                    reach[i][j] = true;
                 } else {
                     dist[i][j] = std::numeric_limits<int>::max();
+                    parent[i][j] = -1;
+                    reach[i][j] = false;
                 }
             }
         }
 
         for (std::size_t i = 0; i < getVertexNum(); ++i) {
-            parent[i][i] = -1;
             for (std::size_t j = 0; j < getVertexNum(); ++j) {
-                if (j != i) {
-                    parent[i][j] = static_cast<int>(i);
-                }
                 for (std::size_t k = 0; k < getVertexNum(); ++k) {
                     if (dist[i][k] != std::numeric_limits<int>::max()
                         && dist[k][j] != std::numeric_limits<int>::max()
                         && dist[i][j] > dist[i][k] + dist[k][j]) {
                         dist[i][j] = dist[i][k] + dist[k][j];
-                        parent[i][k] = static_cast<int>(i);
                         parent[i][j] = static_cast<int>(k);
                     }
+                    reach[i][j] = reach[i][j] || (reach[i][k] && reach[k][j]);
+                    // Calculate the reachability matrix.
                 }
             }
         }
@@ -233,6 +238,147 @@ public:
                 }
             }
         }
+
+        // Print the reachability matrix.
+        std::cout << "The reachability matrix is:" << std::endl;
+        for (std::size_t i = 0; i < getVertexNum(); ++i) {
+            for (std::size_t j = 0; j < getVertexNum(); ++j) {
+                if (reach[i][j] == false) {
+                    std::cout << "0 ";
+                } else {
+                    std::cout << "1 ";
+                }
+            }
+            std::cout << std::endl;
+        }
+
+        // Destroy solution matrixes.
+        for (std::size_t i = 0; i < getVertexNum(); ++i) {
+            delete[] dist[i];
+            delete[] parent[i];
+            delete[] reach[i];
+        }
+        delete[] dist;
+        delete[] parent;
+        delete[] reach;
+    }
+
+    void FloydWarshall(std::size_t dest) const {
+        // Initialize solution matrix.
+        int** dist = new int*[getVertexNum()];
+        int** parent = new int*[getVertexNum()];
+        for (std::size_t i = 0; i < getVertexNum(); ++i) {
+            dist[i] = new int[getVertexNum()];
+            parent[i] = new int[getVertexNum()];
+        }
+        for (std::size_t i = 0; i < getVertexNum(); ++i) {
+            for (std::size_t j = 0; j < getVertexNum(); ++j) {
+                if (isEdge(i, j)) {
+                    dist[i][j] = getWeight(i, j);
+                    parent[i][j] = static_cast<int>(i);
+                } else if (i == j) {
+                    dist[i][j] = 0;
+                    parent[i][j] = -1;
+                } else {
+                    dist[i][j] = std::numeric_limits<int>::max();
+                    parent[i][j] = -1;
+                }
+            }
+        }
+
+        for (std::size_t i = 0; i < getVertexNum(); ++i) {
+            for (std::size_t j = 0; j < getVertexNum(); ++j) {
+                for (std::size_t k = 0; k < getVertexNum(); ++k) {
+                    if (dist[i][k] != std::numeric_limits<int>::max()
+                        && dist[k][j] != std::numeric_limits<int>::max()
+                        && dist[i][j] > dist[i][k] + dist[k][j]) {
+                        dist[i][j] = dist[i][k] + dist[k][j];
+                        parent[i][j] = static_cast<int>(k);
+                    }
+                }
+            }
+        }
+
+        for (std::size_t i = 0; i < getVertexNum(); ++i) {
+            if (dist[i][dest] != 0 && dist[i][dest] != std::numeric_limits<int>::max()) {
+                std::cout << "The shortest path from " << i + 1
+                          << " to " << dest + 1 << " is:" << std::endl;
+                int walker = static_cast<int>(dest);
+                stackADT<int> s;
+                while (walker != -1) {
+                    s.push(walker);
+                    walker = parent[i][walker];
+                }
+                std::cout << s.pop() + 1;
+                while (!s.isEmpty()) {
+                    std::cout << " -> " << s.pop() + 1;
+                }
+                std::cout << std::endl;
+                std::cout << "And the total distance is:" << std::endl
+                          << dist[i][dest] << std::endl << std::endl;
+            }
+        }
+
+        // Destroy solution matrix.
+        for (std::size_t i = 0; i < getVertexNum(); ++i) {
+            delete[] dist[i];
+            delete[] parent[i];
+        }
+        delete[] dist;
+        delete[] parent;
+    }
+
+    void FloydWarshall(std::size_t src, std::size_t dest) const {
+        // Initialize solution matrix.
+        int** dist = new int*[getVertexNum()];
+        int** parent = new int*[getVertexNum()];
+        for (std::size_t i = 0; i < getVertexNum(); ++i) {
+            dist[i] = new int[getVertexNum()];
+            parent[i] = new int[getVertexNum()];
+        }
+        for (std::size_t i = 0; i < getVertexNum(); ++i) {
+            for (std::size_t j = 0; j < getVertexNum(); ++j) {
+                if (isEdge(i, j)) {
+                    dist[i][j] = getWeight(i, j);
+                    parent[i][j] = static_cast<int>(i);
+                } else if (i == j) {
+                    dist[i][j] = 0;
+                    parent[i][j] = -1;
+                } else {
+                    dist[i][j] = std::numeric_limits<int>::max();
+                    parent[i][j] = -1;
+                }
+            }
+        }
+
+        for (std::size_t i = 0; i < getVertexNum(); ++i) {
+            for (std::size_t j = 0; j < getVertexNum(); ++j) {
+                for (std::size_t k = 0; k < getVertexNum(); ++k) {
+                    if (dist[i][k] != std::numeric_limits<int>::max()
+                        && dist[k][j] != std::numeric_limits<int>::max()
+                        && dist[i][j] > dist[i][k] + dist[k][j]) {
+                        dist[i][j] = dist[i][k] + dist[k][j];
+                        parent[i][j] = static_cast<int>(k);
+                    }
+                }
+            }
+        }
+
+        std::cout << "The shortest path from " << src + 1
+                  << " to " << dest + 1 << " is:" << std::endl;
+        int walker = static_cast<int>(dest);
+        stackADT<int> s;
+        while (walker != -1) {
+            s.push(walker);
+            walker = parent[src][walker];
+        }
+        std::cout << s.pop() + 1;
+        while (!s.isEmpty()) {
+            std::cout << " -> " << s.pop() + 1;
+        }
+        std::cout << std::endl;
+        std::cout << "And the total distance is:" << std::endl
+                  << dist[src][dest] << std::endl;
 
         // Destroy solution matrix.
         for (std::size_t i = 0; i < getVertexNum(); ++i) {

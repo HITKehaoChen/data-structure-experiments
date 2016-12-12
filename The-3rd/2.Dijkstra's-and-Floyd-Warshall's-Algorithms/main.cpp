@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <cmath>
 #include <memory>
 #include "graph.h"
@@ -10,20 +11,52 @@ std::unique_ptr<Graph> convertGraph(Graph& graphSrc);
 
 int main() {
     std::unique_ptr<Graph> graphTest;
-    std::size_t vertexNum = 5;
+
+    // Read from file.
+    std::ifstream myFile;
+    myFile.open("graphInput.txt");
+    std::size_t vertexNum;
+    myFile >> vertexNum;
     graphTest.reset(new GListAdjacency(vertexNum));
-    (*graphTest).addEdge(0, 1, 10);
-    (*graphTest).addEdge(0, 3, 30);
-    (*graphTest).addEdge(0, 4, 100);
-    (*graphTest).addEdge(1, 2, 50);
-    (*graphTest).addEdge(2, 3, 20);
-    (*graphTest).addEdge(2, 4, 10);
-    (*graphTest).addEdge(3, 2, 20);
-    (*graphTest).addEdge(3, 4, 60);
+    std::size_t edgeNum;
+    myFile >> edgeNum;
+    for (std::size_t i = 0; i < edgeNum; ++i) {
+        std::size_t vTemp1;
+        std::size_t vTemp2;
+        int weight;
+        myFile >> vTemp1;
+        myFile >> vTemp2;
+        myFile >> weight;
+        (*graphTest).addEdge(vTemp1 - 1, vTemp2 - 1, weight);
+    }
+
+    std::cout << "The graph is:" << std::endl << std::endl;
     printGraph(*graphTest);
     std::cout << std::string(60, '*') << std::endl;
-    (*graphTest).FloydWarshall();
 
+    // Dijkstra's Algorithm
+    std::cout << "Dijkstra's algorithm from vertex 1:"
+              << std::endl << std::endl;
+    (*graphTest).Dijkstra(0);
+    std::cout << std::string(60, '*') << std::endl;
+
+    // Floyd's Algorithm
+    std::cout << "Floyd's algorithm:" << std::endl << std::endl;
+    (*graphTest).FloydWarshall();
+    std::cout << std::string(60, '*') << std::endl;
+
+    // The shortest path to the single target using Floyd's algorithm
+    std::cout << "The shortest path to vertex 3 using Floyd's algorithm"
+              << std::endl << std::endl;
+    (*graphTest).FloydWarshall(2);
+    std::cout << std::string(60, '*') << std::endl;
+
+    // The shortest path from a to b using Floyd's algorithm
+    std::cout << "The shortest path from 1 to 3 using Floyd's algorithm"
+              << std::endl << std::endl;
+    (*graphTest).FloydWarshall(0, 2);
+
+    myFile.close();
     return 0;
 }
 
