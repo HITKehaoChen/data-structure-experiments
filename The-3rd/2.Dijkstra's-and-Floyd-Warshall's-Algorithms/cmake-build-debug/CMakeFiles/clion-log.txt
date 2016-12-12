@@ -1,0 +1,4 @@
+/home/andi-mckee/Programming/IDE/clion-2016.1.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/andi-mckee/Desktop/Data-Structure/The-3rd/2.Dijkstra's-and-Floyd-Warshall's-Algorithms
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/andi-mckee/Desktop/Data-Structure/The-3rd/2.Dijkstra's-and-Floyd-Warshall's-Algorithms/cmake-build-debug

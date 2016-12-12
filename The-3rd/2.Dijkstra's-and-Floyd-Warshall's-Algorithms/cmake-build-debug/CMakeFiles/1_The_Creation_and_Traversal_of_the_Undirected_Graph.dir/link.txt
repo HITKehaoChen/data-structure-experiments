@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/1_The_Creation_and_Traversal_of_the_Undirected_Graph.dir/main.cpp.o  -o 1_The_Creation_and_Traversal_of_the_Undirected_Graph 
