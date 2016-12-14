@@ -58,7 +58,7 @@ int main() {
     avlTestInsertion.inOrderWalk();
     std::cout << std::string(60, '*') << std::endl;
 
-    // Read from file
+    // Read from file (options: RR.txt, LL.txt, RL.txt, LR.txt)
     std::ifstream inputFromFile("LL.txt", std::ios_base::in);
     AVLTree<int> avlTestFile;
     inputFromFile >> avlTestFile;
