@@ -1,0 +1,24 @@
+6 5 7 8 9
+
+Before the last node 9 is inserted, the BST tree is:
+          6
+         / \
+        5   7
+             \
+              8
+
+Insert 9:
+          6
+         / \
+        5   7
+             \
+              8
+               \
+                9
+
+After LL rotation:
+          6
+         / \
+        5   8
+           / \
+          7   9
