@@ -26,6 +26,12 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 >
 > [2.Dijkstra's-and-Floyd-Warshall's-Algorithms](#Shortest-Path)
 
+[Experiment-4th](#Experiment-3rd)
+> [1.AVL-Tree](#AVL-Tree)
+>
+> [2.Search-and-Sort](#Search-and-Sort)
+>
+
 <br>
 # Contents of Each Experiment
 
@@ -220,6 +226,41 @@ And Here is the algorithm:
 7. 软件功能结构安排合理，界面友好，便于使用。
 
 <br>
+## <a name="Experiment-4th"></a>Experiment-4th: 查找结构与排序方法
+
+### <a name="AVL-Tree"></a>1.AVL-Tree
+
+> **Status**: basically finished
+>
+> **Things to Be Done**: tree class optimization
+>
+> [>>>Code Page<<<][41]
+
+本实验要求编写程序实现AVL 存储结构的建立（插入）、删除、查找算法，并反映各种旋转变化。
+
+实验要求：
+
+1. 设计AVL 的左右链存储结构。
+2. 实现AVL 左右链存储结构上的插入（建立）、删除、查找和排序算法。
+3. 测试数据以文件形式保存，能反映插入和删除操作的四种旋转，并输出相应的结果。
+
+* * *
+
+### <a name="Search-and-Sort"></a>2.Search-and-Sort
+
+> **Status**: *UNFINISHED*
+
+查找结构与排序方法的实现
+
+实验要求：
+
+1. 利用以下3组排序方法的一组分别对其进行排序，以图示的方式给出排序方法的运行时间随输入大小（问题规模）n的变化趋势，并与理论分析结果比较。
+（1）冒泡排序和快速排序；
+（2）插入排序和希尔排序；
+（3）选择排序和堆排序。
+2. 对上述以排序的数据进行递归和非递归的二分（折半）查找。以图示的方式给出折半查找方法的运行时间随输入大小（问题规模）n的变化趋势，并与理论分析结果比较。
+
+<br>
 # Others
 
 And if you would like to know more about my university, here is the entry for you:
@@ -237,5 +278,7 @@ And if you would like to know more about my university, here is the entry for yo
 [31]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-3rd/1.The-Creation-and-Traversal-of-the-Undirected-Graph
 
 [32]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-3rd/2.Dijkstra's-and-Floyd-Warshall's-Algorithms
+
+[41]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-4th/1.AVL-Tree
 
 [100]: https://en.wikipedia.org/wiki/Harbin_Institute_of_Technology "More information"
