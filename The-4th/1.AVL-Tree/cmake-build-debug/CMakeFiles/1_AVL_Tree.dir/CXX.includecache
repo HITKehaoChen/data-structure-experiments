@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/andi-mckee/Desktop/Data-Structure/The-4th/1.AVL-Tree/binary_tree.h
+fstream
+-
+iostream
+-
+sstream
+-
+queue.h
+/home/andi-mckee/Desktop/Data-Structure/The-4th/1.AVL-Tree/queue.h
+stack.h
+/home/andi-mckee/Desktop/Data-Structure/The-4th/1.AVL-Tree/stack.h
+
+/home/andi-mckee/Desktop/Data-Structure/The-4th/1.AVL-Tree/main.cpp
+iostream
+-
+sstream
+-
+fstream
+-
+binary_tree.h
+/home/andi-mckee/Desktop/Data-Structure/The-4th/1.AVL-Tree/binary_tree.h
+
+/home/andi-mckee/Desktop/Data-Structure/The-4th/1.AVL-Tree/queue.h
+iostream
+-
+stdexcept
+-
+
+/home/andi-mckee/Desktop/Data-Structure/The-4th/1.AVL-Tree/stack.h
+cstddef
+-
+stdexcept
+-
+
