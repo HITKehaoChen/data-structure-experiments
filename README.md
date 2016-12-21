@@ -26,7 +26,7 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 >
 > [2.Dijkstra's-and-Floyd-Warshall's-Algorithms](#Shortest-Path)
 
-[Experiment-4th](#Experiment-3rd)
+[Experiment-4th](#Experiment-4th)
 > [1.AVL-Tree](#AVL-Tree)
 >
 > [2.Search-and-Sort](#Search-and-Sort)
@@ -255,9 +255,12 @@ And Here is the algorithm:
 实验要求：
 
 1. 利用以下3组排序方法的一组分别对其进行排序，以图示的方式给出排序方法的运行时间随输入大小（问题规模）n的变化趋势，并与理论分析结果比较。
-（1）冒泡排序和快速排序；
-（2）插入排序和希尔排序；
-（3）选择排序和堆排序。
+
+ （1）冒泡排序和快速排序；
+ 
+ （2）插入排序和希尔排序；
+ 
+ （3）选择排序和堆排序。
 2. 对上述以排序的数据进行递归和非递归的二分（折半）查找。以图示的方式给出折半查找方法的运行时间随输入大小（问题规模）n的变化趋势，并与理论分析结果比较。
 
 <br>
