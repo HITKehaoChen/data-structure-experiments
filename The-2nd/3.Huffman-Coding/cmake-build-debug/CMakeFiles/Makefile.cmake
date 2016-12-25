@@ -44,5 +44,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/2_Search_and_Sort.dir/DependInfo.cmake"
+  "CMakeFiles/3_Huffman_Coding.dir/DependInfo.cmake"
   )

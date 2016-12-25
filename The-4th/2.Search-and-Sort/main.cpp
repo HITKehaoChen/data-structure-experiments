@@ -1,7 +1,6 @@
 #include <iostream>
 #include <random>
 #include <utility>
-//#include <stdexcept>
 
 void BubbleSort(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 
