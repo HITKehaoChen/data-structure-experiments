@@ -1,1 +1,0 @@
-/usr/bin/c++   -g   CMakeFiles/2_Search_and_Sort.dir/main.cpp.o  -o 2_Search_and_Sort 

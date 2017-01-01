@@ -1,3 +1,0 @@
-/home/andi-mckee/Desktop/Data-Structure/The-3rd/2.Dijkstra's-and-Floyd-Warshall's-Algorithms/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/andi-mckee/Desktop/Data-Structure/The-3rd/2.Dijkstra's-and-Floyd-Warshall's-Algorithms/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/andi-mckee/Desktop/Data-Structure/The-3rd/2.Dijkstra's-and-Floyd-Warshall's-Algorithms/cmake-build-debug/CMakeFiles/2_Dijkstra_s_and_Floyd_Warshall_s_Algorithms.dir

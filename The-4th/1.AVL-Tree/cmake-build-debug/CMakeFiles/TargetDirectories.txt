@@ -1,3 +1,0 @@
-/home/andi-mckee/Desktop/Data-Structure/The-4th/1.AVL-Tree/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/andi-mckee/Desktop/Data-Structure/The-4th/1.AVL-Tree/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/andi-mckee/Desktop/Data-Structure/The-4th/1.AVL-Tree/cmake-build-debug/CMakeFiles/1_AVL_Tree.dir
