@@ -1,3 +1,0 @@
-/home/andi-mckee/Desktop/Data-Structure/The-1st/1.Infix-Notation-and-Prefix-Notation/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/andi-mckee/Desktop/Data-Structure/The-1st/1.Infix-Notation-and-Prefix-Notation/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/andi-mckee/Desktop/Data-Structure/The-1st/1.Infix-Notation-and-Prefix-Notation/cmake-build-debug/CMakeFiles/CPPTest.dir

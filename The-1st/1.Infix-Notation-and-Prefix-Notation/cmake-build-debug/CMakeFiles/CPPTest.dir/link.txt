@@ -1,1 +1,0 @@
-/usr/bin/c++    -std=c++11 -g   CMakeFiles/CPPTest.dir/main.cpp.o CMakeFiles/CPPTest.dir/stack.cpp.o  -o CPPTest 

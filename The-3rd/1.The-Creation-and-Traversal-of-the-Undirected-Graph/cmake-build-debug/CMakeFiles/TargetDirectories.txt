@@ -1,3 +1,0 @@
-/home/andi-mckee/Desktop/Data-Structure/The-3rd/1.The-Creation-and-Traversal-of-the-Undirected-Graph/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/andi-mckee/Desktop/Data-Structure/The-3rd/1.The-Creation-and-Traversal-of-the-Undirected-Graph/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/andi-mckee/Desktop/Data-Structure/The-3rd/1.The-Creation-and-Traversal-of-the-Undirected-Graph/cmake-build-debug/CMakeFiles/1_The_Creation_and_Traversal_of_the_Undirected_Graph.dir
