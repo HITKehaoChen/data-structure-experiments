@@ -248,7 +248,11 @@ And Here is the algorithm:
 
 ### <a name="Search-and-Sort"></a>2.Search-and-Sort
 
-> **Status**: *UNFINISHED*
+> **Status**: basically finished
+>
+> **Things to be done**: a little bug in Quicksort
+>
+> [>>>Code Page<<<][42]
 
 查找结构与排序方法的实现
 
@@ -283,5 +287,7 @@ And if you would like to know more about my university, here is the entry for yo
 [32]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-3rd/2.Dijkstra's-and-Floyd-Warshall's-Algorithms
 
 [41]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-4th/1.AVL-Tree
+
+[42]: https://github.com/ANDI-Mckee/Data-Structure-Experiments/tree/master/The-4th/2.Search-and-Sort
 
 [100]: https://en.wikipedia.org/wiki/Harbin_Institute_of_Technology "More information"
