@@ -1,8 +1,8 @@
 # Introduction
 
-This repository contains the content of every experiments on data structure course in Harbin Institute of Technology.
+This repository contains the content of every experiment on data structure course in Harbin Institute of Technology.
 
-As a learner, it is common for you to find some mistakes or pitfalls. If so, just point it out, with my deep appreciation.
+As a learner, it is common for you to find some mistakes or pitfalls. If so, just point it out, with my appreciation.
 
 <br>
 
