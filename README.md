@@ -5,6 +5,7 @@ This repository contains the content of every experiments on data structure cour
 As a learner, it is common for you to find some mistakes or pitfalls. If so, just point it out, with my deep appreciation.
 
 <br>
+
 # Index of Experiments
 
 [Experiment-1st](#Experiment-1st)
@@ -29,6 +30,7 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 >
 
 <br>
+
 # Contents of Each Experiment
 
 ## <a name="Experiment-1st"></a>Experiment-1st: 线性结构及其应用
@@ -71,6 +73,7 @@ As a learner, it is common for you to find some mistakes or pitfalls. If so, jus
 5. 要求尽量减少乘法和除法运算中间结果的空间占用和结点频繁的分配与回收操作。（提示：利用循环链表结构和可用空间表的思想，把循环链表表示的多项式返还给可用空间表，从而上述问题）。
 
 <br>
+
 ## <a name="Experiment-2nd"></a>Experiment-2nd: 树型结构及其应用
 
 ### <a name="Binary-Tree"></a>1.The-Creation-and-Traversal-of-the-Binary-Tree-Structure
@@ -142,6 +145,7 @@ And Here is the algorithm:
 > 6) return tNode.
 
 <br>
+
 ## <a name="Experiment-3rd"></a>Experiment-3rd: 图型结构及其应用
 
 ### <a name="Undirected-Graph"></a>1.The-Creation-and-Traversal-of-the-Undirected-Graph
@@ -186,6 +190,7 @@ And Here is the algorithm:
 7. 软件功能结构安排合理，界面友好，便于使用。
 
 <br>
+
 ## <a name="Experiment-4th"></a>Experiment-4th: 查找结构与排序方法
 
 ### <a name="AVL-Tree"></a>1.AVL-Tree
@@ -228,6 +233,7 @@ And Here is the algorithm:
 2. 对上述以排序的数据进行递归和非递归的二分（折半）查找。以图示的方式给出折半查找方法的运行时间随输入大小（问题规模）n的变化趋势，并与理论分析结果比较。
 
 <br>
+
 # Others
 
 And if you would like to know more about my university, here is the entry for you:
